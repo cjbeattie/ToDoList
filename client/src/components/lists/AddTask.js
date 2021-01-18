@@ -33,7 +33,7 @@ const AddTask = (props) => {
       <Form onSubmit={handleSubmit}>
         Task:
         <input
-          id="description"
+          class="description"
           name="description"
           value={formData.description}
           onChange={(e) =>
