@@ -33,6 +33,7 @@ router.get("/seed", isAuthenticatedAdmin, (req, res) => {
             { name: "Work", color: "blue" },
             { name: "Shopping", color: "yellow" },
             { name: "Ideas", color: "green" },
+            { name: "School", color: "purple" },
         ],
         (error, categories) => {
             if (error) {

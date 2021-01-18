@@ -30,10 +30,10 @@ const isAuthenticatedAdmin = (req, res, next) => {
 router.get("/seed", isAuthenticatedAdmin, (req, res) => {
     User.create(
         [
-            { username: "David", password: "123", isAdmin: true },
-            { username: "Courtney", password: "123", isAdmin: true },
-            { username: "Karen", password: "123", isAdmin: true },
-            { username: "Simon", password: "123", isAdmin: false },
+            { username: "David", password: "123", isAdmin: true, lists: [] },
+            { username: "Courtney", password: "123", isAdmin: true, lists: [] },
+            { username: "Karen", password: "123", isAdmin: true, lists: [] },
+            { username: "Simon", password: "123", isAdmin: false, lists: [] },
         ],
         (error, users) => {
             if (error) {
