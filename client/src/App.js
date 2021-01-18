@@ -1,11 +1,12 @@
 import './App.css';
 import { Switch, BrowserRouter as Router, Route, NavLink, Link } from "react-router-dom"
-import TaskList from "./components/lists/TaskList"
+import AllLists from "./components/lists/AllLists"
 import Login from "./components/users/Login"
 import Logout from "./components/users/Logout"
 import SignUp from "./components/users/SignUp"
 import Profile from "./components/users/Profile"
 import AddTask from "./components/lists/AddTask"
+import NewList from "./components/lists/NewList"
 import { Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,7 +21,7 @@ function App() {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 <NavLink to="/list" className="nav-link">Lists</NavLink>
-                <NavLink to="/list/new" className="nav-link">New Task</NavLink>
+                <NavLink to="/list/new" className="nav-link">New List</NavLink>
               </Nav>
               <Nav>
                 <NavLink to="/signup" className="nav-link">SignUp</NavLink>
@@ -32,10 +33,11 @@ function App() {
           </Navbar>
           <Switch>
             <Route exact path="/">
-              <TaskList />
+              <AllLists />
             </Route>
             <Route path="/list/new">
-              <AddTask />
+              {/* <AddTask /> */}
+              <NewList />
             </Route>
             <Route path="/logout">
               <Logout />
