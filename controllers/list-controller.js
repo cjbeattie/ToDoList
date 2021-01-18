@@ -40,7 +40,7 @@ router.get("/seed", isAuthenticatedAdmin, (req, res) => {
                 // 1. Seed category first http://localhost:4000/category/seed
                 // 2. Copy your local category IDs into the correct places below
                 // 3. Seed these lists http://localhost:4000/list/seed
-                category: "6005135b934b439acebe2b69",
+                category: "6005572ac65809d17fce3e41",
                 tasks: [{
                     description: "Fix window",
                     isCompleted: false,
@@ -51,7 +51,7 @@ router.get("/seed", isAuthenticatedAdmin, (req, res) => {
                 }]
             },
             {
-                category: "6005135b934b439acebe2b6a",
+                category: "6005572ac65809d17fce3e42",
                 tasks: [{
                     description: "Fill out exit tickets",
                     isCompleted: false,
@@ -74,8 +74,18 @@ router.get("/seed", isAuthenticatedAdmin, (req, res) => {
 // CRUD (OR MORE LIKE RCUD!)
 
 // READ ALL - find all lists
+// router.get("/", isAuthenticatedNormal, (req, res) => {
+//     List.find({}, (error, lists) => {
+//         if (error) {
+//             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
+//         }
+//         res.status(StatusCodes.OK).send(lists);
+//     }).populate('category');
+// });
+
+// populate test
 router.get("/", isAuthenticatedNormal, (req, res) => {
-    List.find({}, (error, lists) => {
+    List.find({}).populate('category').exec((error, lists) => {
         if (error) {
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
         }
