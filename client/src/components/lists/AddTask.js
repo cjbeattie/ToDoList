@@ -4,10 +4,17 @@ import { Redirect } from "react-router-dom";
 import { Form } from "react-bootstrap";
 
 const AddTask = () => {
-  const handleSubemit = (e) => {
+  const [formData, setFormData] = useState({
+    description: "Please enter a task",
+    isCompleted: false,
+  });
+
+  const [created, setCreated] = useState(false);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/list", formData)
+      .put("/list/:id", formData)
       .then((res) => {
         console.log("response", res);
         setCreated(true);
@@ -17,16 +24,6 @@ const AddTask = () => {
       });
   };
 
-  const [formData, setFormData] = useState({
-    // name: "",
-    // DOB: null,
-    // gender: "M",
-    // family: "",
-    // status: "Abandoned",
-  });
-
-  const [created, setCreated] = useState(false);
-
   if (created) {
     return <Redirect to="/list" />;
   }
@@ -34,7 +31,7 @@ const AddTask = () => {
   return (
     <>
       <h1> Add Task</h1>
-      <Form onSubmit={handleSubemit}>
+      <Form onSubmit={handleSubmit}>
         Task:
         <input
           id="name"
