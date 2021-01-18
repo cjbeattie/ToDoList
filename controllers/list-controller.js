@@ -3,6 +3,7 @@ const { body, validationResult } = require("express-validator");
 const { StatusCodes } = require("http-status-codes");
 const List = require('../models/list');
 
+
 const router = express.Router();
 
 // Authentication check middleware
@@ -27,14 +28,41 @@ const isAuthenticatedAdmin = (req, res, next) => {
 
 // Seed database
 router.get("/seed", isAuthenticatedAdmin, (req, res) => {
-    Animal.create(
+
+    // let HomeID = List.find({ "name": { $eq: "Home" } }, (err, active) => {
+    //     console.log(active);
+    //     res.send(active);
+    // }
+
+    List.create(
         [
-            { name: "Mittens", DOB: new Date("2020-01-01"), gender: "Female", family: "Smith", status: "Abandoned" },
-            { name: "Buddy", DOB: new Date("2019-03-08"), gender: "Male", family: "Jones", status: "Abandoned" },
-            { name: "Nala", DOB: new Date("2019-08-05"), gender: "Female", family: "Lau", status: "Abandoned" },
-            { name: "Teddy", DOB: new Date("2019-06-24"), gender: "Male", family: "Rogers", status: "Abandoned" },
+            {
+                // 1. Seed category first http://localhost:4000/category/seed
+                // 2. Copy your local category IDs into the correct places below
+                // 3. Seed these lists http://localhost:4000/list/seed
+                category: "6005135b934b439acebe2b69",
+                tasks: [{
+                    description: "Fix window",
+                    isCompleted: false,
+                },
+                {
+                    description: "Sweep floors",
+                    isCompleted: false,
+                }]
+            },
+            {
+                category: "6005135b934b439acebe2b6a",
+                tasks: [{
+                    description: "Fill out exit tickets",
+                    isCompleted: false,
+                },
+                {
+                    description: "Do homework",
+                    isCompleted: false,
+                }]
+            },
         ],
-        (error, animals) => {
+        (error, lists) => {
             if (error) {
                 return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
             }
@@ -45,23 +73,23 @@ router.get("/seed", isAuthenticatedAdmin, (req, res) => {
 
 // CRUD (OR MORE LIKE RCUD!)
 
-// READ ALL - find all animals
+// READ ALL - find all lists
 router.get("/", isAuthenticatedNormal, (req, res) => {
-    Animal.find({}, (error, animals) => {
+    List.find({}, (error, lists) => {
         if (error) {
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
         }
-        res.status(StatusCodes.OK).send(animals);
+        res.status(StatusCodes.OK).send(lists);
     });
 });
 
-// READ ONE - find one animal
+// READ ONE - find one list
 router.get("/:id", isAuthenticatedNormal, (req, res) => {
-    Animal.findById(req.params.id, (error, animal) => {
+    List.findById(req.params.id, (error, list) => {
         if (error) {
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
         }
-        res.status(StatusCodes.OK).send(animal);
+        res.status(StatusCodes.OK).send(list);
     });
 });
 
@@ -77,13 +105,13 @@ router.post(
         if (!errors.isEmpty()) {
             // There are errors.
             // Errors are returned in an array using `errors.array()`.
-            const locals = { animal: req.body, errors: errors.array() };
+            const locals = { list: req.body, errors: errors.array() };
             res.status(StatusCodes.BAD_REQUEST).send(locals);
         } else {
             // Data from form is valid.
-            const animal = req.body; // extract the data from POST
-            Animal.create(animal, (error, animal) => {
-                res.status(StatusCodes.CREATED).send(animal);
+            const list = req.body; // extract the data from POST
+            List.create(list, (error, list) => {
+                res.status(StatusCodes.CREATED).send(list);
             });
         }
     }
@@ -101,18 +129,18 @@ router.put(
         if (!errors.isEmpty()) {
             // There are errors.
             // Errors are returned in an array using `errors.array()`.
-            const locals = { animal: req.body, errors: errors.array() };
+            const locals = { list: req.body, errors: errors.array() };
             res.status(StatusCodes.BAD_REQUEST).send(locals);
         } else {
-            Animal.findByIdAndUpdate(
+            List.findByIdAndUpdate(
                 req.params.id, // 1st arg - criteria => id
                 req.body, // 2nd arg - what to update
                 { new: true }, // 3rd arg - { new : true }
-                (error, animal) => {
+                (error, list) => {
                     if (error) {
                         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
                     }
-                    res.status(StatusCodes.OK).send(animal);
+                    res.status(StatusCodes.OK).send(list);
                 }
             );
         }
@@ -121,11 +149,11 @@ router.put(
 
 // DELETE
 router.delete("/:id", isAuthenticatedAdmin, (req, res) => {
-    Animal.findByIdAndRemove(req.params.id, (error, animal) => {
+    List.findByIdAndRemove(req.params.id, (error, list) => {
         if (error) {
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
         }
-        res.status(StatusCodes.OK).send(animal);
+        res.status(StatusCodes.OK).send(list);
     });
 });
 
