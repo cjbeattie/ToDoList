@@ -52,7 +52,7 @@ function App() {
               <Profile />
             </Route>
             <Route path="/list">
-              <TaskList />
+              <AllLists />
             </Route>
           </Switch>
         </div>
