@@ -8,17 +8,18 @@ const NewList = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-      axios.get('/lists').then((response) => {
+      axios.get('/list').then((response) => {
+          console.log(response)
           let cats = [];
-          for (let i = 0; i < response.length; i++) {
-              if (cats.includes(response[i].name) === false) {
-                cats.push(response[i].name)
-              }
-          }
-          setCategories(cats)
+          for (let i = 0; i < response.data.length; i++) {
+              if (cats.includes(response.data[i].category) === false) {
+                cats.push(response.data[i].category)
+              } 
+          } setCategories(cats)
       })
-  })
+  }, [])
   
+
     const handleSubmit = (e) => {
     e.preventDefault();
     axios
