@@ -26,18 +26,17 @@ const Login = () => {
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <fieldset>
-                    <legend>Login</legend>
-                    <label for='username'>Username</label>
+                    <h1>Login</h1>
+                    <label for='username'>Username: </label>
                     <input name='username' id='username' required ref={register} />
                     { errors.username && 'Username is required' }
                     <br />
-                    <label for='password'>Password</label>
+                    <label for='password'>Password: </label>
                     <input name='password' id='password' required ref={register} />
                     { errors.password && "Password is required" }
                     <br />
                 </fieldset>
                 <fieldset>
-                    <legend>Login</legend>
                     <input type="submit" value="Login" />
                     { loginStatus }
                 </fieldset>

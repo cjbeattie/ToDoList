@@ -1,9 +1,11 @@
 import './App.css';
 import { Switch, BrowserRouter as Router, Route, NavLink, Link } from "react-router-dom"
-import List from "./components/lists/List"
+import TaskList from "./components/lists/TaskList"
 import Login from "./components/users/Login"
 import Logout from "./components/users/Logout"
 import SignUp from "./components/users/SignUp"
+import Profile from "./components/users/Profile"
+import AddTask from "./components/lists/AddTask"
 import { Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,15 +26,18 @@ function App() {
                 <NavLink to="/signup" className="nav-link">SignUp</NavLink>
                 <NavLink to="/login" className="nav-link">Login</NavLink>
                 <NavLink to="/logout" className="nav-link">Logout</NavLink>
-                <NavLink to="/" className="nav-link">Profile</NavLink>
+                <NavLink to="/profile" className="nav-link">Profile</NavLink>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
           <Switch>
             <Route exact path="/">
-              <List />
+              <TaskList />
             </Route>
-            <Route path="/">
+            <Route path="/list/new">
+              <AddTask />
+            </Route>
+            <Route path="/logout">
               <Logout />
             </Route>
             <Route path="/login">
@@ -41,8 +46,11 @@ function App() {
             <Route path="/signup">
               <SignUp />
             </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
             <Route path="/list">
-              <List />
+              <TaskList />
             </Route>
           </Switch>
         </div>
