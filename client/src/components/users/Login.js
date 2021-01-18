@@ -27,11 +27,11 @@ const Login = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <fieldset>
                     <h1>Login</h1>
-                    <label for='username'>Username: </label>
+                    <label htmlFor='username'>Username: </label>
                     <input name='username' id='username' required ref={register} />
                     { errors.username && 'Username is required' }
                     <br />
-                    <label for='password'>Password: </label>
+                    <label htmlFor='password'>Password: </label>
                     <input name='password' id='password' required ref={register} />
                     { errors.password && "Password is required" }
                     <br />
