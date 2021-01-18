@@ -13,9 +13,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="App">
-        <Router>
+      <Router>
         <div>
-      <Navbar bg="light" expand="lg">
+          <Navbar bg="light" expand="lg">
             <Navbar.Brand href="/">Donesy!</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -36,7 +36,6 @@ function App() {
               <AllLists />
             </Route>
             <Route path="/list/new">
-              {/* <AddTask /> */}
               <NewList />
             </Route>
             <Route path="/logout">
@@ -52,7 +51,7 @@ function App() {
               <Profile />
             </Route>
             <Route path="/list">
-              <TaskList />
+              <AllLists />
             </Route>
           </Switch>
         </div>
