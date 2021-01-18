@@ -6,7 +6,7 @@ const List = (props) => {
         <>
             <h2>I am a list component</h2>
             <h3>List id: {props.id}</h3>
-            {/* <h3>List category: {props.categoryName}</h3> */}
+            <h3>List category: {props.category}</h3>
             <AddTask category_id={props.id} />
         </>
     )

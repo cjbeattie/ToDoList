@@ -5,7 +5,7 @@ const userSchema = Schema({
     username: { type: String },//, unique: true, required: true },
     password: String,
     isAdmin: Boolean,
-    lists: [mongoose.Schema.Types.ObjectId],
+    lists: [{ type: mongoose.Schema.Types.ObjectId, ref: "List" }],
 });
 
 const User = mongoose.model("User", userSchema);

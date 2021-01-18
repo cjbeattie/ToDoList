@@ -5,17 +5,11 @@ import List from './List'
 
 const AllLists = () => {
     const [lists, setLists] = useState([]);
-    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         axios.get('/list').then((response) => {
             setLists(response.data);
             console.log("lists response.data", response.data);
-        })
-
-        axios.get('/category').then((response) => {
-            setCategories(response.data);
-            console.log("categories response.data", response.data);
         })
     }, [])
 
@@ -30,7 +24,7 @@ const AllLists = () => {
                 <List
                     key={list._id}
                     id={list._id}
-                // categoryName={categories.filter(x => x._id === list.category).name}
+                    category={list.category.name}
                 />
             ))}
         </>
