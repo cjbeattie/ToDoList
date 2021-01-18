@@ -1,7 +1,7 @@
 const express = require('express');
 const { body, validationResult } = require("express-validator");
 const { StatusCodes } = require("http-status-codes");
-const Animal = require('../models/animals');
+const List = require('../models/list');
 
 const router = express.Router();
 
