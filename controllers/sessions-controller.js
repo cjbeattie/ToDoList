@@ -3,7 +3,7 @@ const express = require("express");
 const sessions = express.Router();
 const User = require("../models/users.js");
 const { StatusCodes } = require("http-status-codes");
-const { reset } = require("nodemon");
+// const { reset } = require("nodemon");
 
 // on sessions form submit (log in)
 sessions.post("/", (req, res, next) => {
