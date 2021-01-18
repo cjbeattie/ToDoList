@@ -1,7 +1,7 @@
 const express = require('express');
 const { body, validationResult } = require("express-validator");
 const { StatusCodes } = require("http-status-codes");
-const Animal = require('../models/animals');
+const Category = require('../models/category');
 
 const router = express.Router();
 
@@ -27,14 +27,14 @@ const isAuthenticatedAdmin = (req, res, next) => {
 
 // Seed database
 router.get("/seed", isAuthenticatedAdmin, (req, res) => {
-    Animal.create(
+    Category.create(
         [
-            { name: "Mittens", DOB: new Date("2020-01-01"), gender: "Female", family: "Smith", status: "Abandoned" },
-            { name: "Buddy", DOB: new Date("2019-03-08"), gender: "Male", family: "Jones", status: "Abandoned" },
-            { name: "Nala", DOB: new Date("2019-08-05"), gender: "Female", family: "Lau", status: "Abandoned" },
-            { name: "Teddy", DOB: new Date("2019-06-24"), gender: "Male", family: "Rogers", status: "Abandoned" },
+            { name: "Home", color: "red" },
+            { name: "Work", color: "blue" },
+            { name: "Shopping", color: "yellow" },
+            { name: "Ideas", color: "green" },
         ],
-        (error, animals) => {
+        (error, categories) => {
             if (error) {
                 return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
             }
@@ -45,25 +45,25 @@ router.get("/seed", isAuthenticatedAdmin, (req, res) => {
 
 // CRUD (OR MORE LIKE RCUD!)
 
-// READ ALL - find all animals
+// READ ALL - find all categories
 router.get("/", isAuthenticatedNormal, (req, res) => {
-    Animal.find({}, (error, animals) => {
+    Category.find({}, (error, categories) => {
         if (error) {
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
         }
-        res.status(StatusCodes.OK).send(animals);
+        res.status(StatusCodes.OK).send(categories);
     });
 });
 
-// READ ONE - find one animal
-router.get("/:id", isAuthenticatedNormal, (req, res) => {
-    Animal.findById(req.params.id, (error, animal) => {
-        if (error) {
-            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
-        }
-        res.status(StatusCodes.OK).send(animal);
-    });
-});
+// // READ ONE - find one category
+// router.get("/:id", isAuthenticatedNormal, (req, res) => {
+//     Category.findById(req.params.id, (error, category) => {
+//         if (error) {
+//             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
+//         }
+//         res.status(StatusCodes.OK).send(category);
+//     });
+// });
 
 // CREATE
 router.post(
@@ -77,13 +77,13 @@ router.post(
         if (!errors.isEmpty()) {
             // There are errors.
             // Errors are returned in an array using `errors.array()`.
-            const locals = { animal: req.body, errors: errors.array() };
+            const locals = { category: req.body, errors: errors.array() };
             res.status(StatusCodes.BAD_REQUEST).send(locals);
         } else {
             // Data from form is valid.
-            const animal = req.body; // extract the data from POST
-            Animal.create(animal, (error, animal) => {
-                res.status(StatusCodes.CREATED).send(animal);
+            const category = req.body; // extract the data from POST
+            Category.create(cateogory, (error, category) => {
+                res.status(StatusCodes.CREATED).send(category);
             });
         }
     }
@@ -101,18 +101,18 @@ router.put(
         if (!errors.isEmpty()) {
             // There are errors.
             // Errors are returned in an array using `errors.array()`.
-            const locals = { animal: req.body, errors: errors.array() };
+            const locals = { category: req.body, errors: errors.array() };
             res.status(StatusCodes.BAD_REQUEST).send(locals);
         } else {
-            Animal.findByIdAndUpdate(
+            Category.findByIdAndUpdate(
                 req.params.id, // 1st arg - criteria => id
                 req.body, // 2nd arg - what to update
                 { new: true }, // 3rd arg - { new : true }
-                (error, animal) => {
+                (error, category) => {
                     if (error) {
                         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
                     }
-                    res.status(StatusCodes.OK).send(animal);
+                    res.status(StatusCodes.OK).send(category);
                 }
             );
         }
@@ -121,11 +121,11 @@ router.put(
 
 // DELETE
 router.delete("/:id", isAuthenticatedAdmin, (req, res) => {
-    Animal.findByIdAndRemove(req.params.id, (error, animal) => {
+    Category.findByIdAndRemove(req.params.id, (error, category) => {
         if (error) {
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
         }
-        res.status(StatusCodes.OK).send(animal);
+        res.status(StatusCodes.OK).send(category);
     });
 });
 

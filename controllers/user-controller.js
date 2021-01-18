@@ -124,6 +124,7 @@ router.put(
         }
     }
 );
+
 // DELETE
 router.delete("/:id", isAuthenticatedAdmin, (req, res) => {
     User.findByIdAndRemove(req.params.id, (error, user) => {
