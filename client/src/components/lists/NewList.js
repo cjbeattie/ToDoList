@@ -5,19 +5,22 @@ import { Redirect } from "react-router-dom";
 import { Form } from "react-bootstrap";
 
 const NewList = () => {
-  const [categories, setCategories] = useState([]);
+      const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get("/category").then((response) => {
-      //   console.log(response)
-      //   let cats = [];
-      //   for (let i = 0; i < response.data.length; i++) {
-      //       if (cats.includes(response.data[i].name) === false) {
-      //         cats.push(response.data[i].name)
-      //       }
-      //   } setCategories(cats)
-      setCategories(response.data);
-    });
+    const requestCat = axios.get("/category");
+    const requestList = axios.get("/list");
+    axios.all([requestList, requestCat]).then(axios.spread((...responses) => {
+        const responseList = responses[0];
+        const responseCat = responses[1];
+        let cats = [];
+        for (let i = 0; i < responseList.data.length; i++) {
+            cats.push(responseList.data[i].category)
+        }
+        // Function to find the difference between the arrays
+        const result = responseCat.data.filter(({ _id: id1 }) => !cats.some(({ _id: id2 }) => id2 === id1));
+        setCategories(result)
+    }));
   }, []);
 
   const handleSubmit = (e) => {
@@ -55,7 +58,7 @@ const NewList = () => {
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="exampleForm.ControlSelect1">
         Name:
-        <Form.Control as="select"
+        <Form.Control as="select" multiple
           id="category"
           name="category"
           value={formData.category._id}
