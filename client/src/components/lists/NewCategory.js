@@ -20,6 +20,7 @@ const NewCategory = () => {
   const [formData, setFormData] = useState({
     name: null,
     color: null,
+    __v: 0
   });
 
   const [created, setCreated] = useState(false);
