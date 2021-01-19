@@ -58,14 +58,14 @@ function App() {
             <Route exact path="/">
               <AllLists />
             </Route>
+            <Route path="/category/new">
+              <NewCategory />
+            </Route>
             <Route path="/category/:id">
               <CategoryEdit />
             </Route>
             <Route path="/category">
               <Category />
-            </Route>
-            <Route path="/category/new">
-              <NewCategory />
             </Route>
             <Route path="/list/new">
               <NewList />

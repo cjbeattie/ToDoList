@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap";
 
 const NewCategory = () => {
   const handleSubmit = (e) => {
-    e.preventDefault;
+    e.preventDefault();
     axios
       .post("/category", formData)
       .then((res) => {
@@ -30,7 +30,7 @@ const NewCategory = () => {
 
   return (
     <>
-      <h1> Category Edit</h1>
+      <h1> New Category </h1>
       <Form onSubmit={handleSubmit}>
         Name:
         <input
