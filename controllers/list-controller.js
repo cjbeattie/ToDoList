@@ -131,7 +131,7 @@ router.post(
 router.put(
     "/:id",
     isAuthenticatedAdmin,
-    body("name", "Min Length of 3").trim().isLength({ min: 3 }),
+    // body("name", "Min Length of 3").trim().isLength({ min: 3 }),
     // body("score", "Must be a number").trim().isNumeric().isLength({ max: 3 }),
     (req, res) => {
         const errors = validationResult(req);
