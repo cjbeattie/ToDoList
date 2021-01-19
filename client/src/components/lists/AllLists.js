@@ -53,9 +53,10 @@ const AllLists = () => {
             {lists.map((list) => (
                 <List
                     key={list._id}
-                    id={list._id}
-                    category={list.category.name}
-                    tasks={list.tasks}
+                    list={list}
+                    // id={list._id}
+                    // category={list.category.name}
+                    // tasks={list.tasks}
                     handleCheckboxClick={(e) => handleCheckboxClick(e, list)}
                 />
             ))}
