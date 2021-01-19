@@ -8,22 +8,22 @@ const NewList = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-      axios.get('/list').then((response) => {
-          console.log(response)
-          let cats = [];
-          for (let i = 0; i < response.data.length; i++) {
-              if (cats.includes(response.data[i].category) === false) {
-                cats.push(response.data[i].category)
-              } 
-          } setCategories(cats)
-      })
-  }, [])
-  
+    axios.get("/category").then((response) => {
+      //   console.log(response)
+      //   let cats = [];
+      //   for (let i = 0; i < response.data.length; i++) {
+      //       if (cats.includes(response.data[i].name) === false) {
+      //         cats.push(response.data[i].name)
+      //       }
+      //   } setCategories(cats)
+      setCategories(response.data);
+    });
+  }, []);
 
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/lists", formData)
+      .post("/list", formData)
       .then((res) => {
         console.log("response", res);
         setCreated(true);
@@ -34,14 +34,19 @@ const NewList = () => {
   };
 
   const [formData, setFormData] = useState({
-    category: null,
+    category: {
+        _id: null,
+        name: null,
+        color: null,
+        __v: 0,
+    },
     tasks: [],
   });
 
   const [created, setCreated] = useState(false);
 
   if (created) {
-      return <Redirect to='/lists' />
+    return <Redirect to="/list" />;
   }
 
   return (
@@ -52,20 +57,27 @@ const NewList = () => {
         <select
           id="category"
           name="category"
-          value={formData.category}
-          onChange={(e) =>
-            setFormData((state) => ({
-              ...state,
-              name: e.target.value,
-            }))
-          }
+          value={formData}
+          onChange={(e) => {
+              console.log(e.target.value)
+            setFormData(
+              {category: {
+                  _id: e.target.value,
+                  name: categories.find(x => x._id === e.target.value).name,
+                  color: categories.find(x => x._id === e.target.value).color,
+                  __v: categories.find(x => x._id === e.target.value).__v
+              }, tasks: []},
+            )
+          }}
         >
-            {categories.map((a) => (
-                <option>{a}</option>
-            ))}
+          {categories.map((a) => (
+            <option value={a._id}>{a.name}</option>
+          ))}
         </select>
         <br />
-        <button type="submit" class='btn btn-primary'>Submit</button>
+        <button type="submit" class="btn btn-primary">
+          Submit
+        </button>
       </Form>
     </>
   );
