@@ -36,7 +36,7 @@ const CategoryEdit = () => {
         name: response.name,
       });
     });
-  });
+  },[]);
 
   return (
     <>

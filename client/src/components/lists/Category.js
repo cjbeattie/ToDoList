@@ -12,7 +12,7 @@ const Category = () => {
     axios.get("/category").then((response) => {
       setCategory(response.data);
     });
-  }, [category]);
+  }, []);
 
   const updateDelete = (id) => () => {
     setCategory(category.filter((x) => x._id !== id));
