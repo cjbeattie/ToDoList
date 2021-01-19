@@ -5,16 +5,22 @@ import { Form } from "react-bootstrap";
 
 const AddTask = (props) => {
   const [formData, setFormData] = useState({
-    description: "Please enter a task",
+    description: "",
     isCompleted: false,
   });
+
+
 
   // const [created, setCreated] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    let updatedList = props.list
+    updatedList.tasks.push(formData);
+
     axios
-      .put(`/list/${props.id}`, formData)
+      .put(`/list/${props.list._id}`, updatedList)
       .then((res) => {
         console.log("response", res);
         // setCreated(true);
@@ -22,6 +28,7 @@ const AddTask = (props) => {
       .catch((error) => {
         console.log("error", error);
       });
+
   };
 
   // if (created) {
@@ -35,6 +42,7 @@ const AddTask = (props) => {
         <input
           className="description"
           name="description"
+          placeholder="Enter task"
           value={formData.description}
           onChange={(e) =>
             setFormData((state) => ({
