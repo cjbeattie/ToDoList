@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import { Form } from "react-bootstrap";
 
 const AddTask = (props) => {
@@ -8,7 +8,6 @@ const AddTask = (props) => {
     description: "",
     isCompleted: false,
   });
-
 
 
   // const [created, setCreated] = useState(false);
@@ -19,11 +18,27 @@ const AddTask = (props) => {
     let updatedList = props.list
     updatedList.tasks.push(formData);
 
+    // let updatedLists = props.lists
+    // updatedLists.find(x => x._id === props.list._id).splice()
+    // console.log("this is the found one in updatedLists", updatedLists.find(x => x._id === props.list._id)) // = updatedList;
+
+    // get the index of the updatedList
+    // console.log("INDEX", props.lists.indexOf(updatedList))
+
+    // props.lists.splice(props.lists.indexOf(updatedList), 1, updatedList)
+    // console.log("Updated Lists state", props.lists)
+
+
     axios
       .put(`/list/${props.list._id}`, updatedList)
       .then((res) => {
         console.log("response", res);
+        props.handleAddTask(res);
         // setCreated(true);
+        // setFormData((state) => ({
+        //   ...state,
+        //   _id: res.data.tasks.find(x => x. === props.list._id), /// ARRRGH
+        // }))
       })
       .catch((error) => {
         console.log("error", error);

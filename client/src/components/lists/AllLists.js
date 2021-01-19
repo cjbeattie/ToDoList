@@ -43,9 +43,11 @@ const AllLists = () => {
             });
     }
 
-    const updateDelete = (id) => () => {
-        setLists(lists.filter(x => x._id !== id))
-    }
+
+
+    // const updateDelete = (id) => () => {
+    //     setLists(lists.filter(x => x._id !== id))
+    // }
 
     return (
         <>
@@ -54,6 +56,8 @@ const AllLists = () => {
                 <List
                     key={list._id}
                     list={list}
+                    // tasks={list.tasks}
+                    // lists={lists}
                     // id={list._id}
                     // category={list.category.name}
                     // tasks={list.tasks}
