@@ -11,7 +11,8 @@ const Task = (props) => {
                     id={props.task._id}
                     name="isCompleted"
                     value={props.task.isCompleted}
-                    onClick={(e) => props.handleCheckboxClick(e)}
+                    checked={props.task.isCompleted}
+                    onChange={(e) => props.handleCheckboxClick(e)}
                 />{props.task.description}</label>
             <br />
         </>)

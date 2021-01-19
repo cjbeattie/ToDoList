@@ -35,13 +35,20 @@ const List = (props) => {
         // console.log("e is ", e)
         // console.log("clicked id is ", e.target.id)
 
-        let tempList = list
-        tempList.tasks.find(x => x._id === e.target.id).isCompleted = e.target.checked;
+
+        // // old - didn't stay checked on window refresh
+        // let tempList = list
+        // tempList.tasks.find(x => x._id === e.target.id).isCompleted = e.target.checked;
+
+        let tempTasks = [...list.tasks]
+        tempTasks.find(x => x._id === e.target.id).isCompleted = e.target.checked;
+        let updatedList = { ...list, tasks: tempTasks }
+
 
 
 
         axios
-            .put(`/list/${list._id}`, tempList)
+            .put(`/list/${list._id}`, updatedList)
             .then((res) => {
                 console.log("response", res);
                 // setLists((state) => ({
@@ -49,10 +56,43 @@ const List = (props) => {
                 //     isCompleted: e.target.value,
                 // }))
                 // setChanged(true);
+                setList(updatedList);
+
+
             })
             .catch((error) => {
                 console.log("error", error);
             });
+
+        // if (e.target.checked) {
+        //     setTimeout(() => {
+        //         if (e.target.checked) {
+        //             // let filteredList = list
+        //             // filteredList.tasks.filter(x => x._id !== e.target.id);
+
+
+        //             let tempTasks2 = [...list.tasks]
+        //             tempTasks2.filter(x => x._id !== e.target.id)
+        //             setList({ ...list, tasks: tempTasks2 });
+
+
+        //             axios
+        //                 .put(`/list/${list._id}`, tempTasks2)
+        //                 .then((res) => {
+        //                     console.log("response", res);
+        //                     // setLists((state) => ({
+        //                     //     ...state,
+        //                     //     isCompleted: e.target.value,
+        //                     // }))
+        //                     // setChanged(true);
+
+        //                 })
+        //                 .catch((error) => {
+        //                     console.log("error", error);
+        //                 });
+        //         }
+        //     }, 1000)
+        // }
     }
 
     return (
