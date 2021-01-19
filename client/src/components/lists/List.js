@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import axios from "axios"
 import AddTask from './AddTask'
 import Task from './Task'
 
@@ -24,6 +25,36 @@ const List = (props) => {
 
     }
 
+    const handleCheckboxClick = (e) => {
+        // e.preventDefault();
+
+        // let taskText = e.target.parentNode.textContent;
+
+        // console.log("clicked!", taskText);
+        // console.log("list is... ", list)
+        // console.log("e is ", e)
+        // console.log("clicked id is ", e.target.id)
+
+        let tempList = list
+        tempList.tasks.find(x => x._id === e.target.id).isCompleted = e.target.checked;
+
+
+
+        axios
+            .put(`/list/${list._id}`, tempList)
+            .then((res) => {
+                console.log("response", res);
+                // setLists((state) => ({
+                //     ...state,
+                //     isCompleted: e.target.value,
+                // }))
+                // setChanged(true);
+            })
+            .catch((error) => {
+                console.log("error", error);
+            });
+    }
+
     return (
         <>
             {/* <h2>I am a list component</h2>
@@ -33,7 +64,7 @@ const List = (props) => {
                 <Task
                     key={task._id}
                     task={task}
-                    handleCheckboxClick={props.handleCheckboxClick}
+                    handleCheckboxClick={handleCheckboxClick}
                 // parentListID={props.id}
                 />
             ))}
