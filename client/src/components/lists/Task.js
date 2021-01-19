@@ -5,7 +5,7 @@ const Task = (props) => {
     return (
         <>
 
-            <label for="isCompleted">
+            <label htmlFor="isCompleted">
                 <input
                     type="checkbox"
                     id={props.task._id}
