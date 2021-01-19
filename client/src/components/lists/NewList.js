@@ -53,11 +53,12 @@ const NewList = () => {
     <>
       <h1>New List</h1>
       <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="exampleForm.ControlSelect1">
         Name:
-        <select
+        <Form.Control as="select"
           id="category"
           name="category"
-          value={formData}
+          value={formData.category._id}
           onChange={(e) => {
               console.log(e.target.value)
             setFormData(
@@ -73,7 +74,8 @@ const NewList = () => {
           {categories.map((a) => (
             <option value={a._id}>{a.name}</option>
           ))}
-        </select>
+        </Form.Control>
+        </Form.Group>
         <br />
         <button type="submit" class="btn btn-primary">
           Submit
