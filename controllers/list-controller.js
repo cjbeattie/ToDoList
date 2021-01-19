@@ -40,7 +40,7 @@ router.get("/seed", isAuthenticatedAdmin, (req, res) => {
                 // 1. Seed category first http://localhost:4000/category/seed
                 // 2. Copy your local category IDs into the correct places below
                 // 3. Seed these lists http://localhost:4000/list/seed
-                category: "6005572ac65809d17fce3e41",
+                category: "6006486378279d6e545e6e62",
                 tasks: [{
                     description: "Fix window",
                     isCompleted: false,
@@ -51,7 +51,7 @@ router.get("/seed", isAuthenticatedAdmin, (req, res) => {
                 }]
             },
             {
-                category: "6005572ac65809d17fce3e42",
+                category: "6006486378279d6e545e6e65",
                 tasks: [{
                     description: "Fill out exit tickets",
                     isCompleted: false,
@@ -107,7 +107,7 @@ router.get("/:id", isAuthenticatedNormal, (req, res) => {
 router.post(
     "/",
     isAuthenticatedAdmin,
-    body("name", "Min Length of 3").trim().isLength({ min: 3 }),
+    // body("category", "Min Length of 3").trim().isLength({ min: 3 }),
     // body("score", "Must be a number").trim().isNumeric().isLength({ max: 3 }),
     (req, res) => {
         const errors = validationResult(req);

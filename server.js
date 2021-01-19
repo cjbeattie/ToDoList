@@ -21,8 +21,8 @@ app.use(express.static("public"));
 // setup method override to allow DELETE
 // app.use(methodOverride("_method"));
 
-// const cors = require("cors");
-// app.use(cors());
+const cors = require("cors");
+app.use(cors());
 
 const session = require("express-session");
 app.use(
