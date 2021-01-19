@@ -13,6 +13,7 @@ import Profile from "./components/users/Profile";
 import AddTask from "./components/lists/AddTask";
 import Category from "./components/lists/Category";
 import CategoryEdit from "./components/lists/CategoryEdit";
+import NewCategory from "./components/lists/NewCategory"
 import NewList from "./components/lists/NewList";
 import { Navbar, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -62,6 +63,9 @@ function App() {
             </Route>
             <Route path="/category">
               <Category />
+            </Route>
+            <Route path="/category/new">
+              <NewCategory />
             </Route>
             <Route path="/list/new">
               <NewList />
