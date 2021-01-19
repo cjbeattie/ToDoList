@@ -11,13 +11,13 @@ const NewList = () => {
     const requestCat = axios.get("/category");
     const requestList = axios.get("/list");
     axios.all([requestList, requestCat]).then(axios.spread((...responses) => {
-        const responseList = responses[0];
-        const responseCat = responses[1];
+        const responseList = responses[0]; //array of current lists
+        const responseCat = responses[1]; //array of all categories
         let cats = [];
         for (let i = 0; i < responseList.data.length; i++) {
             cats.push(responseList.data[i].category)
         }
-        // Function to find the difference between the arrays
+        // Function to find the difference between the two arrays
         const result = responseCat.data.filter(({ _id: id1 }) => !cats.some(({ _id: id2 }) => id2 === id1));
         setCategories(result)
     }));
