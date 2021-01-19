@@ -20,7 +20,7 @@ const CategoryEdit = () => {
     // console.log("event", e);
   };
 
-  const [changed, setChanged] = useState(false);
+//   const [changed, setChanged] = useState(false);
 
 //   if (changed) {
 //     return <Redirect to="/category" />;
@@ -55,7 +55,7 @@ const CategoryEdit = () => {
           }
         />
         <br />
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </Form>

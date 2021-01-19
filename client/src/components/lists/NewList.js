@@ -61,11 +61,11 @@ const NewList = () => {
           }
         >
             {categories.map((a) => (
-                <option>{a}</option>
+                <option key={categories._id} >{a}</option>
             ))}
         </select>
         <br />
-        <button type="submit" class='btn btn-primary'>Submit</button>
+        <button type="submit" className='btn btn-primary'>Submit</button>
       </Form>
     </>
   );
