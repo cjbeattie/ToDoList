@@ -5,26 +5,24 @@ import { Form } from "react-bootstrap";
 
 
 const CategoryEdit = () => {
-    let { id } = useParams();
-  const handleSubemit = (e) => {
+    let { id } = useParams(); 
+    const [changed, setChanged] = useState(false);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .put(`/category/${id}`, formData)
       .then((res) => {
+        setChanged(true);
         console.log("response", res);
-        // setChanged(true);
-      })
+        
+    })
       .catch((error) => {
         console.log("error", error);
       });
-    // console.log("event", e);
-  };
+    console.log("event", e);
+};
 
-//   const [changed, setChanged] = useState(false);
-
-//   if (changed) {
-//     return <Redirect to="/category" />;
-//   }
 
   const [formData, setFormData] = useState({
     name: "",
@@ -33,15 +31,19 @@ const CategoryEdit = () => {
   useEffect(() => {
     axios.get(`/category/${id}`).then((response) => {
       setFormData({
-        name: response.name,
+        name: response.data.name,
       });
     });
   },[]);
 
+  if (changed) {
+    return <Redirect to ="/"></Redirect>
+}
+
   return (
     <>
       <h1> Category Edit</h1>
-      <Form onSubmit={handleSubemit}>
+      <Form onSubmit={handleSubmit}>
         Name:
         <input
           id="name"
