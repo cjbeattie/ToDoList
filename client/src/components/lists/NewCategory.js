@@ -45,6 +45,7 @@ const NewCategory = () => {
           }
         />
         <br />
+        Colour:
         <input
           id="color"
           name="color"
