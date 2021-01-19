@@ -1,14 +1,21 @@
-import './App.css';
-import { Switch, BrowserRouter as Router, Route, NavLink } from "react-router-dom"
-import AllLists from "./components/lists/AllLists"
-import Login from "./components/users/Login"
-import Logout from "./components/users/Logout"
-import SignUp from "./components/users/SignUp"
-import Profile from "./components/users/Profile"
-import AddTask from "./components/lists/AddTask"
-import NewList from "./components/lists/NewList"
-import { Navbar, Nav } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
+import {
+  Switch,
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+} from "react-router-dom";
+import AllLists from "./components/lists/AllLists";
+import Login from "./components/users/Login";
+import Logout from "./components/users/Logout";
+import SignUp from "./components/users/SignUp";
+import Profile from "./components/users/Profile";
+import AddTask from "./components/lists/AddTask";
+import Category from "./components/lists/Category";
+import CategoryEdit from "./components/lists/CategoryEdit";
+import NewList from "./components/lists/NewList";
+import { Navbar, Nav } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
@@ -20,20 +27,41 @@ function App() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <NavLink to="/list" className="nav-link">Lists</NavLink>
-                <NavLink to="/list/new" className="nav-link">New List</NavLink>
+                <NavLink to="/list" className="nav-link">
+                  Lists
+                </NavLink>
+                <NavLink to="/category" className="nav-link">
+                  Categories
+                </NavLink>
+                <NavLink to="/list/new" className="nav-link">
+                  New List
+                </NavLink>
               </Nav>
               <Nav>
-                <NavLink to="/signup" className="nav-link">SignUp</NavLink>
-                <NavLink to="/login" className="nav-link">Login</NavLink>
-                <NavLink to="/sessions" className="nav-link">Logout</NavLink>
-                <NavLink to="/profile" className="nav-link">Profile</NavLink>
+                <NavLink to="/signup" className="nav-link">
+                  SignUp
+                </NavLink>
+                <NavLink to="/login" className="nav-link">
+                  Login
+                </NavLink>
+                <NavLink to="/sessions" className="nav-link">
+                  Logout
+                </NavLink>
+                <NavLink to="/profile" className="nav-link">
+                  Profile
+                </NavLink>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
           <Switch>
             <Route exact path="/">
               <AllLists />
+            </Route>
+            <Route path="/category/:id">
+              <CategoryEdit />
+            </Route>
+            <Route path="/category">
+              <Category />
             </Route>
             <Route path="/list/new">
               <NewList />
@@ -56,7 +84,6 @@ function App() {
           </Switch>
         </div>
       </Router>
-
     </div>
   );
 }

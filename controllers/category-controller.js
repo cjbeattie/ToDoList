@@ -56,15 +56,15 @@ router.get("/", isAuthenticatedNormal, (req, res) => {
     });
 });
 
-// // READ ONE - find one category
-// router.get("/:id", isAuthenticatedNormal, (req, res) => {
-//     Category.findById(req.params.id, (error, category) => {
-//         if (error) {
-//             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
-//         }
-//         res.status(StatusCodes.OK).send(category);
-//     });
-// });
+// READ ONE - find one category
+router.get("/:id", isAuthenticatedNormal, (req, res) => {
+    Category.findById(req.params.id, (error, category) => {
+        if (error) {
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
+        }
+        res.status(StatusCodes.OK).send(category);
+    });
+});
 
 // CREATE
 router.post(
