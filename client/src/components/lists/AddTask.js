@@ -15,8 +15,14 @@ const AddTask = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let updatedList = props.list
-    updatedList.tasks.push(formData);
+    // works but duplicate
+    // let updatedList = props.list
+    // updatedList.tasks.push(formData);
+
+    let updatedTasks = [...props.list.tasks]
+    updatedTasks.push(formData);
+    let updatedList = { ...props.list, tasks: updatedTasks };
+
 
     // let updatedLists = props.lists
     // updatedLists.find(x => x._id === props.list._id).splice()
