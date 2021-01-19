@@ -26,7 +26,7 @@ function App() {
               <Nav>
                 <NavLink to="/signup" className="nav-link">SignUp</NavLink>
                 <NavLink to="/login" className="nav-link">Login</NavLink>
-                <NavLink to="/logout" className="nav-link">Logout</NavLink>
+                <NavLink to="/sessions" className="nav-link">Logout</NavLink>
                 <NavLink to="/profile" className="nav-link">Profile</NavLink>
               </Nav>
             </Navbar.Collapse>
@@ -38,7 +38,7 @@ function App() {
             <Route path="/list/new">
               <NewList />
             </Route>
-            <Route path="/logout">
+            <Route path="/sessions">
               <Logout />
             </Route>
             <Route path="/login">

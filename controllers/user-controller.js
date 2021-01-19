@@ -10,20 +10,20 @@ const router = express.Router();
 // NORMAL
 const isAuthenticatedNormal = (req, res, next) => {
     return next();
-    // if (req.session && req.session.currentUser) {
-    //     return next();
-    // } else {
-    //     res.status(StatusCodes.FORBIDDEN).send({ error: "forbidden" });
-    // }
+    if (req.session && req.session.currentUser) {
+        return next();
+    } else {
+        res.status(StatusCodes.FORBIDDEN).send({ error: "forbidden" });
+    }
 };
 // ADMIN
 const isAuthenticatedAdmin = (req, res, next) => {
     return next();
-    // if (req.session && req.session.currentUser && req.session.currentUser.isAdmin === true) {
-    //     return next();
-    // } else {
-    //     res.status(StatusCodes.FORBIDDEN).send({ error: "forbidden" });
-    // }
+    if (req.session && req.session.currentUser && req.session.currentUser.isAdmin === true) {
+        return next();
+    } else {
+        res.status(StatusCodes.FORBIDDEN).send({ error: "forbidden" });
+    }
 };
 
 // Seed database

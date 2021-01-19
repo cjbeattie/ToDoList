@@ -44,9 +44,9 @@ app.use("/category", categoryController);
 const sessionsController = require('./controllers/sessions-controller.js')
 app.use('/sessions', sessionsController)
 
-// app.get('/', (req, res, next) => {
-//   res.send({ currentUser: req.session.currentUser })
-// })
+app.get('/', (req, res) => {
+  res.send({ currentUser: req.session.currentUser })
+})
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

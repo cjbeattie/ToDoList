@@ -28,7 +28,6 @@ const UserProfile = () => {
           </tr>
         </thead>
       </Table>
-
       <p>This is a list of all users in our database. Admin can remove users</p>
       <Table striped bordered hover>
         <thead>

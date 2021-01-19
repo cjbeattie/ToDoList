@@ -24,9 +24,9 @@ sessions.post("/", (req, res, next) => {
   });
 });
 
-sessions.delete("/", (req, res, next) => {
+sessions.delete("/", (req, res) => {
   req.session.destroy(() => {
-    res.clearCookie(this.cookie, { path: "/" });
+    res.clearCookie("connect.sid", { path: "/" });
     res.status(StatusCodes.OK).send({ msg: "Logging out" });
   });
 });

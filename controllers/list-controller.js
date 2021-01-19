@@ -40,7 +40,7 @@ router.get("/seed", isAuthenticatedAdmin, (req, res) => {
                 // 1. Seed category first http://localhost:4000/category/seed
                 // 2. Copy your local category IDs into the correct places below
                 // 3. Seed these lists http://localhost:4000/list/seed
-                category: "6005572ac65809d17fce3e41",
+                category: "600646412e02284a3b302072",
                 tasks: [{
                     description: "Fix window",
                     isCompleted: false,
@@ -51,7 +51,7 @@ router.get("/seed", isAuthenticatedAdmin, (req, res) => {
                 }]
             },
             {
-                category: "6005572ac65809d17fce3e42",
+                category: "600646412e02284a3b302073",
                 tasks: [{
                     description: "Fill out exit tickets",
                     isCompleted: false,
