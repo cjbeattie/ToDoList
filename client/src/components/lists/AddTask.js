@@ -50,6 +50,7 @@ const AddTask = (props) => {
         console.log("error", error);
       });
 
+    // reset form input to be blank
     setFormData({
       description: "",
       isCompleted: false,
