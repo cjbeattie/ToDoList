@@ -46,8 +46,11 @@ const AllLists = () => {
 
 
 
-    const updateDelete = (id) => () => {
-        setLists(lists.filter(x => x._id !== id))
+    const updateDelete = () => {
+        axios.get('/list').then((response) => {
+            setLists(response.data);
+            console.log("response", response)
+        })
     }
 
     return (
@@ -64,7 +67,7 @@ const AllLists = () => {
                     // tasks={list.tasks}
                     // handleCheckboxClick={(e) => handleCheckboxClick(e, list)}
                     />
-                    <DeleteList id={list._id} updateFn={updateDelete(list._id)} />
+                    <DeleteList id={list._id} updateFn={updateDelete} />
                 </>
             ))}
         </>
