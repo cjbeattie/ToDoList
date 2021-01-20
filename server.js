@@ -12,6 +12,15 @@ mongoose.connect(process.env.MONGODB_URI, {
   useCreateIndex: true
 });
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('./client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build',
+      'index.html'));
+  });
+}
+
 // const methodOverride = require("method-override");
 
 // app.use() => using express middleware
@@ -50,14 +59,7 @@ app.get('/', (req, res) => {
   res.send({ currentUser: req.session.currentUser })
 })
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('./client/build'));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build',
-      'index.html'));
-  });
-}
 
 const port = process.env.PORT || 4000
 app.listen(port, () => {
