@@ -52,20 +52,19 @@ const AllLists = () => {
 
     return (
         <>
-            <h1>This is the homepage with all the lists</h1>
             {lists.map((list) => (
                 <>
-                <List
-                    key={list._id}
-                    list={list}
-                // tasks={list.tasks}
-                // lists={lists}
-                // id={list._id}
-                // category={list.category.name}
-                // tasks={list.tasks}
-                // handleCheckboxClick={(e) => handleCheckboxClick(e, list)}
-                />
-                <DeleteList id={list._id} updateFn={updateDelete(list._id)}/>
+                    <List
+                        key={list._id}
+                        list={list}
+                    // tasks={list.tasks}
+                    // lists={lists}
+                    // id={list._id}
+                    // category={list.category.name}
+                    // tasks={list.tasks}
+                    // handleCheckboxClick={(e) => handleCheckboxClick(e, list)}
+                    />
+                    <DeleteList id={list._id} updateFn={updateDelete(list._id)} />
                 </>
             ))}
         </>
