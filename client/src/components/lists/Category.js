@@ -37,11 +37,11 @@ const Category = () => {
             <tr key={categories._id}>
               <td>{categories.name}</td>
               <td>
-                <Link to={`/category/${categories._id}`}>Edit</Link> |{" "}
-                <CategoryDelete
+                <Link to={`/category/${categories._id}`}>Edit</Link>
+                {/* <CategoryDelete
                   id={categories._id}
                   updateFn={updateDelete(categories._id)}
-                />{" "}
+                />{" "} */}
               </td>
               {/* <td><categoryDelete id={categories._id} updateFn={updateDelete(category._id)} /></td> */}
             </tr>
