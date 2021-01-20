@@ -9,7 +9,6 @@ const router = express.Router();
 // Authentication check middleware
 // NORMAL
 const isAuthenticatedNormal = (req, res, next) => {
-    return next();
     if (req.session && req.session.currentUser) {
         return next();
     } else {
@@ -18,7 +17,6 @@ const isAuthenticatedNormal = (req, res, next) => {
 };
 // ADMIN
 const isAuthenticatedAdmin = (req, res, next) => {
-    return next();
     if (req.session && req.session.currentUser && req.session.currentUser.isAdmin === true) {
         return next();
     } else {
@@ -26,28 +24,10 @@ const isAuthenticatedAdmin = (req, res, next) => {
     }
 };
 
-// Seed database
-router.get("/seed", isAuthenticatedAdmin, (req, res) => {
-    User.create(
-        [
-            { username: "David", password: "123", isAdmin: true, lists: [] },
-            { username: "Courtney", password: "123", isAdmin: true, lists: [] },
-            { username: "Karen", password: "123", isAdmin: true, lists: [] },
-            { username: "Simon", password: "123", isAdmin: false, lists: [] },
-        ],
-        (error, users) => {
-            if (error) {
-                return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
-            }
-            res.status(StatusCodes.OK).send({ message: "Seed successful" });
-        }
-    );
-});
-
 // CREATE
 router.post(
     "/",
-    isAuthenticatedNormal,
+    // isAuthenticatedNormal,
     body("username", "Min Length of 3").trim().isLength({ min: 3 }),
     // body("score", "Must be a number").trim().isNumeric().isLength({ max: 3 }),
     (req, res) => {
@@ -86,7 +66,7 @@ router.get("/", isAuthenticatedNormal, (req, res) => {
 });
 
 // READ ONE
-router.get("/:id", isAuthenticatedNormal, (req, res) => {
+router.get("/:id", (req, res) => {
     User.findById(req.params.id, (error, user) => {
         if (error) {
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
