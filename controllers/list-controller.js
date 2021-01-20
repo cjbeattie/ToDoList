@@ -145,6 +145,7 @@ router.put(
             List.findByIdAndUpdate(
                 req.params.id, // 1st arg - criteria => id
                 req.body, // 2nd arg - what to update
+                // { category: somecategory, tasks: []},
                 { new: true }, // 3rd arg - { new : true }
                 // { returnOriginal: false },
                 (error, list) => {
