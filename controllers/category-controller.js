@@ -70,7 +70,7 @@ router.get("/:id", isAuthenticatedNormal, (req, res) => {
 router.post(
     "/",
     isAuthenticatedAdmin,
-    body("name", "Min Length of 3").trim().isLength({ min: 3 }),
+    // body("name", "Min Length of 3").trim().isLength({ min: 3 }),
     // body("score", "Must be a number").trim().isNumeric().isLength({ max: 3 }),
     (req, res) => {
         const errors = validationResult(req);
@@ -83,7 +83,7 @@ router.post(
         } else {
             // Data from form is valid.
             const category = req.body; // extract the data from POST
-            Category.create(cateogory, (error, category) => {
+            Category.create(category, (error, category) => {
                 res.status(StatusCodes.CREATED).send(category);
             });
         }

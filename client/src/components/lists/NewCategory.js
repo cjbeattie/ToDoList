@@ -4,6 +4,8 @@ import { Redirect } from "react-router-dom";
 import { Form } from "react-bootstrap";
 
 const NewCategory = () => {
+  const [created, setCreated] = useState(false);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -23,7 +25,6 @@ const NewCategory = () => {
     __v: 0
   });
 
-  const [created, setCreated] = useState(false);
 
   if (created) {
       return <Redirect to="/category" />
