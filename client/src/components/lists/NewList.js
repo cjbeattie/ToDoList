@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import { Form } from "react-bootstrap";
+import { Form, Card } from "react-bootstrap";
 
 const NewList = () => {
   const [categories, setCategories] = useState([]);
@@ -57,14 +57,15 @@ const NewList = () => {
   }
 
   return (
-    <>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <Card style={{width: '18rem', height: '15rem'}} >
       <h1>New List</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="exampleForm.ControlSelect1">
-          Name:
+          <Form.Label>Name:</Form.Label>
           <Form.Control
             as="select"
-            multiple
+            
             id="category"
             name="category"
             value={formData.category._id}
@@ -90,8 +91,10 @@ const NewList = () => {
         <button type="submit" class="btn btn-primary">
           Submit
         </button>
+        <br />
       </Form>
-    </>
+      </Card>
+    </div>
   );
 };
 
