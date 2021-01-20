@@ -64,35 +64,41 @@ const List = (props) => {
                 console.log("error", error);
             });
 
-        // if (e.target.checked) {
-        //     setTimeout(() => {
-        //         if (e.target.checked) {
-        //             // let filteredList = list
-        //             // filteredList.tasks.filter(x => x._id !== e.target.id);
+
+        // DELETE*************************************
+        if (e.target.checked) {
+            setTimeout(() => {
+                if (e.target.checked) {
+                    // let filteredList = list
+                    // filteredList.tasks.filter(x => x._id !== e.target.id);
+
+                    console.log("list", list)
+
+                    let tempTasks2 = [...list.tasks]
+                    tempTasks2 = tempTasks2.filter(x => x._id !== e.target.id)
+                    console.log("tempTasks2", tempTasks2)
+                    console.log("e.target.id", e.target.id)
 
 
-        //             let tempTasks2 = [...list.tasks]
-        //             tempTasks2.filter(x => x._id !== e.target.id)
-        //             setList({ ...list, tasks: tempTasks2 });
+                    axios
+                        .put(`/list/${list._id}`, tempTasks2)
+                        .then((res) => {
+                            console.log("response", res);
+                            // setLists((state) => ({
+                            //     ...state,
+                            //     isCompleted: e.target.value,
+                            // }))
+                            // setChanged(true);
+                            setList({ ...list, tasks: tempTasks2 });
 
 
-        //             axios
-        //                 .put(`/list/${list._id}`, tempTasks2)
-        //                 .then((res) => {
-        //                     console.log("response", res);
-        //                     // setLists((state) => ({
-        //                     //     ...state,
-        //                     //     isCompleted: e.target.value,
-        //                     // }))
-        //                     // setChanged(true);
-
-        //                 })
-        //                 .catch((error) => {
-        //                     console.log("error", error);
-        //                 });
-        //         }
-        //     }, 1000)
-        // }
+                        })
+                        .catch((error) => {
+                            console.log("error", error);
+                        });
+                }
+            }, 1000)
+        }
     }
 
     return (
