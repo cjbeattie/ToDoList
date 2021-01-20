@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from "axios"
 import AddTask from './AddTask'
 import Task from './Task'
+// import DeleteList from './DeleteList'
 
 const List = (props) => {
     const [list, setList] = useState({ tasks: [] });
@@ -24,6 +25,7 @@ const List = (props) => {
         // console.log("list is now ***** ", list);
 
     }
+
 
     const handleCheckboxClick = (e) => {
         // e.preventDefault();
@@ -106,6 +108,8 @@ const List = (props) => {
             {/* <h2>I am a list component</h2>
             <h3>List id: {props.id}</h3> */}
             <h3>{props.list.category.name}</h3>
+            {/* <DeleteList id={list._id} updateFn={updateDelete(list._id)} /> */}
+            <br />
             {list.tasks.map((task) => (
                 <Task
                     key={task._id}
