@@ -9,6 +9,24 @@ const List = (props) => {
 
     useEffect(() => {
         setList(props.list);
+        console.log("setList called, here is props.list", props.list)
+
+        if (list.tasks !== undefined && list.tasks.length !== 0) {
+            let tempTasks = [...list.tasks]
+            tempTasks = tempTasks.filter(x => !x.isCompleted)
+            let updatedList = { ...list, tasks: tempTasks }
+            console.log("made it to the part where we delete on load, this is updatedList", updatedList)
+
+            axios
+                .put(`/list/${list._id}`, updatedList)
+                .then((res) => {
+                    console.log("response", res);
+                    setList({ ...list, tasks: tempTasks });
+                })
+                .catch((error) => {
+                    console.log("error", error);
+                });
+        }
     }, [props]);
 
     const handleAddTask = (res) => {
