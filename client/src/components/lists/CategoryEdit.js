@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Redirect, useParams} from "react-router-dom";
-import { Form } from "react-bootstrap";
+import { Form, Card } from "react-bootstrap";
 
 
 const CategoryEdit = () => {
@@ -32,16 +32,18 @@ const CategoryEdit = () => {
     axios.get(`/category/${id}`).then((response) => {
       setFormData({
         name: response.data.name,
+        color: response.data.color
       });
     });
   },[]);
 
   if (changed) {
-    return <Redirect to ="/"></Redirect>
+    return <Redirect to ="/category"></Redirect>
 }
 
   return (
-    <>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <Card style={{width: '18rem', height: '15rem'}} >
       <h1> Category Edit</h1>
       <Form onSubmit={handleSubmit}>
         Name:
@@ -57,11 +59,26 @@ const CategoryEdit = () => {
           }
         />
         <br />
+        <Form.Control as="select" id="color" name="color" value={formData.color} onChange={(e) =>
+            setFormData((state) => ({
+              ...state,
+              color: e.target.value,
+            }))
+          }>
+            <option>Red</option>
+            <option>Orange</option>
+            <option>Yellow</option>
+            <option>Green</option>
+            <option>Blue</option>
+            <option>Indigo</option>
+            <option>Violet</option>
+        </Form.Control>
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </Form>
-    </>
+      </Card>
+    </div>
   );
 };
 

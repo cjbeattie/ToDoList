@@ -52,7 +52,7 @@ const NewCategory = () => {
         <br />
         <Form.Label>Colour:</Form.Label>
         <br />
-        <input
+        {/* <input
           id="color"
           name="color"
           value={formData.color}
@@ -62,7 +62,21 @@ const NewCategory = () => {
               color: e.target.value,
             }))
           }
-        />
+        /> */}
+        <Form.Control as="select" id="color" name="color" value={formData.color} onChange={(e) =>
+            setFormData((state) => ({
+              ...state,
+              color: e.target.value,
+            }))
+          }>
+            <option>Red</option>
+            <option>Orange</option>
+            <option>Yellow</option>
+            <option>Green</option>
+            <option>Blue</option>
+            <option>Indigo</option>
+            <option>Violet</option>
+        </Form.Control>
         <br />
         <br />
         <button type="submit" className="btn btn-primary">
