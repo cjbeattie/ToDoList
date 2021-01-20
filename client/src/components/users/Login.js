@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useForm } from  'react-hook-form';
 import { Redirect } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
 
 const OK = 'Ok';
 
@@ -23,7 +24,8 @@ const Login = () => {
     }
 
     return (
-        <>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <Card style={{width: '18rem', height: '15rem'}} >
             <form onSubmit={handleSubmit(onSubmit)}>
                 <fieldset>
                     <h1>Login</h1>
@@ -41,7 +43,8 @@ const Login = () => {
                     { loginStatus }
                 </fieldset>
             </form>
-        </>
+            </Card>
+        </div>
     )
 }
 

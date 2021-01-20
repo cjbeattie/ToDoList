@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import { Form } from "react-bootstrap";
+import { Form, Card } from "react-bootstrap";
 
 const NewCategory = () => {
   const [created, setCreated] = useState(false);
@@ -31,10 +31,13 @@ const NewCategory = () => {
   }
 
   return (
-    <>
-      <h1> New Category </h1>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <Card style={{width: '18rem', height: '15rem'}}>
+      <Card.Title> New Category </Card.Title>
+      <Card.Body>
       <Form onSubmit={handleSubmit}>
-        Name:
+        <Form.Label>Name:</Form.Label>
+        <br />
         <input
           id="name"
           name="name"
@@ -47,7 +50,8 @@ const NewCategory = () => {
           }
         />
         <br />
-        Colour:
+        <Form.Label>Colour:</Form.Label>
+        <br />
         <input
           id="color"
           name="color"
@@ -60,11 +64,14 @@ const NewCategory = () => {
           }
         />
         <br />
+        <br />
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </Form>
-    </>
+      </Card.Body>
+      </Card>
+    </div>
   );
 
 };

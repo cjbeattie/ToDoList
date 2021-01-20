@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import { Card } from 'react-bootstrap'
 
 const SignUp = (e) => {
 
@@ -49,7 +50,8 @@ const SignUp = (e) => {
   }
 
   return (
-    <>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <Card style={{width: '18rem', height: '15rem'}} >
       <h1> SignUp Form</h1>
       <form onSubmit={handleSubmit}>
         Username:
@@ -86,7 +88,8 @@ const SignUp = (e) => {
         <br />
         <input type="submit" />
       </form>
-    </>
+      </Card>
+    </div>
   );
 };
 
