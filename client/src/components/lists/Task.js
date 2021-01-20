@@ -6,10 +6,17 @@ const Task = props => {
     const [inputVisible, setInputVisible] = useState(false);
     const [text, setText] = useState(props.task.description);
 
-    function onClickOutSide(e) {
+    const onClickOutSide = (e) => {
         // Check if user is clicking outside of <input>
         if (inputRef.current && !inputRef.current.contains(e.target)) {
             setInputVisible(false); // Disable text input
+            props.handleEditTask(text, props.task._id);
+        }
+    }
+
+    const handleKeyDown = (event) => {
+        if (event.code === "Enter") {
+            setInputVisible(false); // Disable text inpu
             props.handleEditTask(text, props.task._id);
         }
     }
@@ -44,7 +51,8 @@ const Task = props => {
                         onChange={e => {
                             setText(e.target.value);
                         }}
-                        id={props.task._id}
+                        onKeyDown={handleKeyDown}
+                    // id={props.task._id}
                     />
                     <br />
                 </>
@@ -55,7 +63,8 @@ const Task = props => {
                             htmlFor="isCompleted"
                             key={props.task._id}
                             onClick={() => setInputVisible(true)}
-                            id={props.task._id}>
+                        // id={props.task._id}
+                        >
                             {text}
                         </label>
                         <br />
