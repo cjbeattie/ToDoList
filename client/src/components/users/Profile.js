@@ -33,6 +33,7 @@ const UserProfile = () => {
         <thead>
           <tr>
             <th>Username</th>
+            <th>isAdmin</th>
             <th>Admin Actions</th>
           </tr>
         </thead>
@@ -40,6 +41,7 @@ const UserProfile = () => {
           {user.map((user) => (
             <tr key={user._id}>
               <td>{user.username}</td>
+              <td>{user.isAdmin.toString()}</td>
               <td><UserDelete id={user._id} updateFn={updateDelete(user._id)} /></td>
             </tr>
           ))}
