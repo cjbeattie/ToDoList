@@ -50,6 +50,11 @@ const AddTask = (props) => {
         console.log("error", error);
       });
 
+    setFormData({
+      description: "",
+      isCompleted: false,
+    });
+
   };
 
   // if (created) {
