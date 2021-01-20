@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Table } from "react-bootstrap";
-import CategoryEdit from "./CategoryEdit"
+import { Table , Button } from "react-bootstrap";
+import CategoryEdit from "./CategoryEdit";
+import CategoryDelete from "./CategoryDelete";
 // import categoryDelete from "./categoryDelete"
 
 const Category = () => {
@@ -21,7 +22,9 @@ const Category = () => {
   return (
     <>
       <h1>Categories</h1>
-      <p>These are all the categories</p>
+      <Link to="/category/new">
+        <Button variant="primary" type="button">New Category</Button>
+      </Link>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -33,7 +36,13 @@ const Category = () => {
           {category.map((categories) => (
             <tr key={categories._id}>
               <td>{categories.name}</td>
-              <td><Link to={`/category/${categories._id}`}>Edit</Link> </td>
+              <td>
+                <Link to={`/category/${categories._id}`}>Edit</Link> |{" "}
+                <CategoryDelete
+                  id={categories._id}
+                  updateFn={updateDelete(categories._id)}
+                />{" "}
+              </td>
               {/* <td><categoryDelete id={categories._id} updateFn={updateDelete(category._id)} /></td> */}
             </tr>
           ))}
