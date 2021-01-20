@@ -78,10 +78,12 @@ const List = (props) => {
                     tempTasks2 = tempTasks2.filter(x => x._id !== e.target.id)
                     console.log("tempTasks2", tempTasks2)
                     console.log("e.target.id", e.target.id)
+                    let updatedList2 = { ...list, tasks: tempTasks2 }
+
 
 
                     axios
-                        .put(`/list/${list._id}`, tempTasks2)
+                        .put(`/list/${list._id}`, updatedList2)
                         .then((res) => {
                             console.log("response", res);
                             // setLists((state) => ({
