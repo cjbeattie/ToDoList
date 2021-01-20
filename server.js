@@ -3,6 +3,7 @@ const app = express()
 // setup the mongoose connection (app.js)
 const mongoose = require("mongoose");
 require("dotenv").config();
+const path = require('path');
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -48,7 +49,15 @@ app.get('/', (req, res) => {
   res.send({ currentUser: req.session.currentUser })
 })
 
-const port = process.env.PORT || 4000;
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('./client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build',
+      'index.html'));
+  });
+}
+
+const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log("Server is listening on port " + port);
 });
