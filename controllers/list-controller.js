@@ -146,10 +146,12 @@ router.put(
                 req.params.id, // 1st arg - criteria => id
                 req.body, // 2nd arg - what to update
                 { new: true }, // 3rd arg - { new : true }
+                // { returnOriginal: false },
                 (error, list) => {
                     if (error) {
                         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
                     }
+                    console.log("req.body", req.body)
                     res.status(StatusCodes.OK).send(list);
                 }
             );
