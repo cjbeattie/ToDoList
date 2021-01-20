@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from 'react';
 import List from './List'
+import DeleteList from './DeleteList'
 
 
 const AllLists = () => {
@@ -45,14 +46,15 @@ const AllLists = () => {
 
 
 
-    // const updateDelete = (id) => () => {
-    //     setLists(lists.filter(x => x._id !== id))
-    // }
+    const updateDelete = (id) => () => {
+        setLists(lists.filter(x => x._id !== id))
+    }
 
     return (
         <>
             <h1>This is the homepage with all the lists</h1>
             {lists.map((list) => (
+                <>
                 <List
                     key={list._id}
                     list={list}
@@ -63,6 +65,8 @@ const AllLists = () => {
                 // tasks={list.tasks}
                 // handleCheckboxClick={(e) => handleCheckboxClick(e, list)}
                 />
+                <DeleteList id={list._id} updateFn={updateDelete(list._id)}/>
+                </>
             ))}
         </>
     )
