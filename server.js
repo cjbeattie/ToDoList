@@ -34,15 +34,6 @@ app.use(
   })
 )
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('./client/build'));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build',
-      'index.html'));
-  });
-}
-
 const userController = require('./controllers/user-controller')
 app.use('/users', userController)
 
@@ -59,7 +50,14 @@ app.get('/', (req, res) => {
   res.send({ currentUser: req.session.currentUser })
 })
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('./client/build'));
 
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build',
+      'index.html'));
+  });
+}
 
 const port = process.env.PORT || 4000
 app.listen(port, () => {
