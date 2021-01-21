@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import { ListGroup } from "react-bootstrap";
+
 
 const Task = props => {
     // We use hooks to declare "initial" states
@@ -34,7 +36,7 @@ const Task = props => {
     });
 
     return (
-        <React.Fragment>
+        <ListGroup.Item>
             <input
                 type="checkbox"
                 id={props.task._id}
@@ -70,7 +72,7 @@ const Task = props => {
                         <br />
                     </>
                 )}
-        </React.Fragment>
+        </ListGroup.Item>
     );
 };
 
