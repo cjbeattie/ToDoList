@@ -19,7 +19,7 @@ const UserProfile = () => {
 
   return (
     <>
-      <h1>Profile</h1>
+      <h2>Profile</h2>
       <p>This is the current user</p>
       <Table striped bordered hover>
         <thead>

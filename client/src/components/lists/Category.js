@@ -21,9 +21,9 @@ const Category = () => {
 
   return (
     <>
-      <h1>Categories</h1>
+      <h2>Categories</h2>
       <Link to="/category/new">
-        <Button variant="primary" type="button">New Category</Button>
+        <Button variant="outline-secondary" type="button" className="mb-3">New Category</Button>
       </Link>
       <Table striped bordered hover>
         <thead>
