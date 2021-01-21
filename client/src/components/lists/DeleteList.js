@@ -11,7 +11,7 @@ const DeleteList = ({ id, updateFn }) => {
 
     return (
         <>
-            <Button variant="primary" onClick={doDelete}>Delete This List</Button>
+            <Button variant="outline-secondary" onClick={doDelete}>Delete List</Button>
         </>
     )
 }

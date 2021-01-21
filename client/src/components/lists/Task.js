@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ListGroup } from "react-bootstrap";
+import { InputGroup, FormControl } from "react-bootstrap";
 
 
 const Task = props => {
@@ -36,18 +36,43 @@ const Task = props => {
     });
 
     return (
-        <ListGroup.Item>
-            <input
+        <InputGroup classname="mb-3">
+            <InputGroup.Prepend>
+                <InputGroup.Checkbox
+                    aria-label="Checkbox for following text input"
+                    id={props.task._id}
+                    name="isCompleted"
+                    value={props.task.isCompleted}
+                    checked={props.task.isCompleted}
+                    onChange={(e) => props.handleCheckboxClick(e)} />
+            </InputGroup.Prepend>
+            {/* <input
                 type="checkbox"
                 id={props.task._id}
                 name="isCompleted"
                 value={props.task.isCompleted}
                 checked={props.task.isCompleted}
                 onChange={(e) => props.handleCheckboxClick(e)}
-            />
+            /> */}
             {inputVisible ? (
                 <>
-                    <input
+                    <FormControl
+                        ref={inputRef} // Set the Ref
+                        value={text} // Now input value uses local state
+                        onChange={e => {
+                            setText(e.target.value);
+                        }}
+                        onKeyDown={handleKeyDown}
+                        type="text"
+                        placeholder={text}
+                    // placeholder="Enter text"
+                    // onChange={this.handleChange}
+                    // htmlFor="isCompleted"
+                    // key={props.task._id}
+                    // onClick={() => setInputVisible(true)}
+                    />
+
+                    {/* <input
                         ref={inputRef} // Set the Ref
                         value={text} // Now input value uses local state
                         onChange={e => {
@@ -56,12 +81,24 @@ const Task = props => {
                         onKeyDown={handleKeyDown}
                     // id={props.task._id}
                     />
-                    <br />
+                    <br /> */}
                 </>
             ) : (
                     // <span onClick={() => setInputVisible(true)}>{text}</span>
                     <>
-                        <label
+
+                        <FormControl
+                            readOnly
+                            style={{ backgroundColor: "white", color: "black" }}
+                            placeholder={text}
+                            type="text"
+                            // placeholder="Enter text"
+                            // onChange={this.handleChange}
+                            htmlFor="isCompleted"
+                            key={props.task._id}
+                            onClick={() => setInputVisible(true)}
+                        />
+                        {/* <label
                             htmlFor="isCompleted"
                             key={props.task._id}
                             onClick={() => setInputVisible(true)}
@@ -69,10 +106,10 @@ const Task = props => {
                         >
                             {text}
                         </label>
-                        <br />
+                        <br /> */}
                     </>
                 )}
-        </ListGroup.Item>
+        </InputGroup>
     );
 };
 

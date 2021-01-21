@@ -113,7 +113,7 @@ const List = (props) => {
             {/* <h3>{props.list.category.name}</h3> */}
             {/* <DeleteList id={list._id} updateFn={updateDelete(list._id)} /> */}
             {/* <br /> */}
-            <ListGroup variant="flush">
+            <Card.Body variant="flush" classname="mb-3">
                 {list.tasks.map((task) => (
                     <Task
                         key={task._id}
@@ -122,9 +122,11 @@ const List = (props) => {
                         handleEditTask={handleEditTask}
                     />
                 ))}
-            </ListGroup>
-            <AddTask list={list} handleAddTask={handleAddTask} />
-            <DeleteList id={list._id} updateFn={props.updateDelete} />
+                <AddTask list={list} handleAddTask={handleAddTask} />
+                <DeleteList id={list._id} updateFn={props.updateDelete} />
+            </Card.Body>
+            {/* <AddTask list={list} handleAddTask={handleAddTask} /> */}
+            {/* <DeleteList id={list._id} updateFn={props.updateDelete} /> */}
         </Card>
 
     )
