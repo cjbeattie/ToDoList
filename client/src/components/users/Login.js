@@ -25,24 +25,29 @@ const Login = () => {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Card style={{ width: '18rem', height: '15rem' }} >
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <fieldset>
-                        <h1>Login</h1>
-                        <label htmlFor='username'>Username: </label>
-                        <input name='username' id='username' required ref={register} />
-                        {errors.username && 'Username is required'}
+            <Card style={{ width: '18rem' }} className="text-left mt-3">
+                <Card.Header as="h5">Login</Card.Header>
+                <Card.Body variant="flush" classname="mb-3">
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <fieldset>
+                            {/* <h1>Login</h1> */}
+                            <label htmlFor='username'>Username: </label>
+                            <input name='username' id='username' required ref={register} />
+                            {errors.username && 'Username is required'}
+                            <br />
+                            <label htmlFor='password'>Password: </label>
+                            <input name='password' id='password' required ref={register} />
+                            {errors.password && "Password is required"}
+                            <br />
+                        </fieldset>
                         <br />
-                        <label htmlFor='password'>Password: </label>
-                        <input name='password' id='password' required ref={register} />
-                        {errors.password && "Password is required"}
-                        <br />
-                    </fieldset>
-                    <fieldset>
-                        <input type="submit" value="Login" />
-                        {loginStatus}
-                    </fieldset>
-                </form>
+                        <fieldset>
+                            <input type="submit" value="Login" />
+                            {loginStatus}
+                        </fieldset>
+                    </form>
+                </Card.Body>
+
             </Card>
         </div>
     )
