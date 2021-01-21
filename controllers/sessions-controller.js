@@ -26,6 +26,8 @@ sessions.post("/", (req, res, next) => {
 
 sessions.get('/', (req, res) => {
   res.send({ currentUser: req.session.currentUser })
+  // res.send(req.session.currentUser)
+
   console.log(req.session.currentUser)
 })
 

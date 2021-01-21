@@ -15,7 +15,7 @@ import Category from "./components/lists/Category";
 import CategoryEdit from "./components/lists/CategoryEdit";
 import NewCategory from "./components/lists/NewCategory"
 import NewList from "./components/lists/NewList"
-// import NewListUser from "./components/lists/NewListUser";
+import NewListUser from "./components/lists/NewListUser";
 import { Navbar, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -71,7 +71,7 @@ function App() {
               <Category />
             </Route>
             <Route path="/list/new">
-              <NewList />
+              <NewListUser />
             </Route>
             <Route path="/sessions">
               <Logout />

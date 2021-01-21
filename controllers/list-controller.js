@@ -83,7 +83,7 @@ router.get("/seed", isAuthenticatedAdmin, (req, res) => {
 //     }).populate('category');
 // });
 
-// populate test
+// READ ALL - WITH POPULATE
 router.get("/", isAuthenticatedNormal, (req, res) => {
     List.find({}).populate('category').exec((error, lists) => {
         if (error) {
