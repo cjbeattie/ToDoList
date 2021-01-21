@@ -39,6 +39,7 @@ const NewListUser = () => {
         for (let i = 0; i < responseList.data.length; i++) {
           cats.push(responseList.data[i].category);
         }
+        // Finds the categories that aren't currently a list
         const result = responseCat.data.filter(
           ({ _id: id1 }) => !cats.some(({ _id: id2 }) => id2 === id1)
         );
@@ -50,6 +51,7 @@ const NewListUser = () => {
     );
   }, []);
 
+//   This is the API call for sessions that might need some async stuff to go on
   useEffect(() => {
       axios.get(`/api/users/${id}`).then((response) => {
         setUser({
@@ -105,7 +107,7 @@ const NewListUser = () => {
               value={formData.category._id}
               onChange={(e) => {
                 console.log(e.target.value);
-                let cats = user.lists.push({
+                let cats = user.lists.push({ // This is apparently not a function and where the errors are being chucked up
                   category: {
                     _id: e.target.value,
                     name: categories.find((x) => x._id === e.target.value).name,
