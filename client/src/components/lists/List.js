@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import axios from "axios"
 import AddTask from './AddTask'
 import Task from './Task'
+import DeleteList from './DeleteList'
+import { Card, ListGroup } from "react-bootstrap";
+
 // import DeleteList from './DeleteList'
 
 const List = (props) => {
@@ -105,20 +108,27 @@ const List = (props) => {
     }
 
     return (
-        <>
-            <h3>{props.list.category.name}</h3>
+        <Card style={{ width: '18rem' }} className="text-left">
+            <Card.Header as="h5">{props.list.category.name}</Card.Header>
+            {/* <h3>{props.list.category.name}</h3> */}
             {/* <DeleteList id={list._id} updateFn={updateDelete(list._id)} /> */}
-            <br />
-            {list.tasks.map((task) => (
-                <Task
-                    key={task._id}
-                    task={task}
-                    handleCheckboxClick={handleCheckboxClick}
-                    handleEditTask={handleEditTask}
-                />
-            ))}
-            <AddTask list={list} handleAddTask={handleAddTask} />
-        </>
+            {/* <br /> */}
+            <Card.Body variant="flush" classname="mb-3">
+                {list.tasks.map((task) => (
+                    <Task
+                        key={task._id}
+                        task={task}
+                        handleCheckboxClick={handleCheckboxClick}
+                        handleEditTask={handleEditTask}
+                    />
+                ))}
+                <AddTask list={list} handleAddTask={handleAddTask} />
+                <DeleteList id={list._id} updateFn={props.updateDelete} />
+            </Card.Body>
+            {/* <AddTask list={list} handleAddTask={handleAddTask} /> */}
+            {/* <DeleteList id={list._id} updateFn={props.updateDelete} /> */}
+        </Card>
+
     )
 }
 

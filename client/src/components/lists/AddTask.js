@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 // import { Redirect } from "react-router-dom";
-import { Form } from "react-bootstrap";
+import { Form, InputGroup, FormControl, Button } from "react-bootstrap";
 
 const AddTask = (props) => {
   const [formData, setFormData] = useState({
@@ -34,6 +34,12 @@ const AddTask = (props) => {
     // props.lists.splice(props.lists.indexOf(updatedList), 1, updatedList)
     // console.log("Updated Lists state", props.lists)
 
+    // reset form input to be blank
+    console.log("Setting form data...**********")
+    setFormData({
+      description: "",
+      isCompleted: false,
+    });
 
     axios
       .put(`/api/list/${props.list._id}`, updatedList)
@@ -50,11 +56,7 @@ const AddTask = (props) => {
         console.log("error", error);
       });
 
-    // reset form input to be blank
-    setFormData({
-      description: "",
-      isCompleted: false,
-    });
+
 
   };
 
@@ -65,22 +67,35 @@ const AddTask = (props) => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        Task:
-        <input
-          className="description"
+        <InputGroup
+          className="description mb-3"
           name="description"
           placeholder="Enter task"
-          value={formData.description}
+          // value={formData.description}
           onChange={(e) =>
             setFormData((state) => ({
               ...state,
               description: e.target.value,
             }))
           }
-        />
-        <button type="submit" className="btn btn-primary">
+        >
+          {/* <InputGroup.Prepend>
+            <InputGroup.Text id="basic-addon1">+</InputGroup.Text>
+          </InputGroup.Prepend> */}
+          <FormControl
+            placeholder="Add Task"
+            value={formData.description}
+            aria-label=""
+          // aria-describedby="basic-addon1"
+          />
+          <InputGroup.Append>
+            <Button type="submit" variant="outline-secondary">+</Button>
+          </InputGroup.Append>
+        </InputGroup>
+
+        {/* <button type="submit" className="btn btn-primary">
           Add Task
-        </button>
+        </button> */}
       </Form>
     </>
   );
