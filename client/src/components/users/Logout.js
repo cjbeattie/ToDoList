@@ -12,7 +12,11 @@ const Logout = () => {
     }, [])
 
     if (ok) {
-        return <h1>Logged out</h1>
+        return (
+            <>
+                <br />
+                <p>You have been logged out</p>
+            </>)
     }
 
     return <p>Logging out</p>;
