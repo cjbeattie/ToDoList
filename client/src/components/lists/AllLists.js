@@ -8,12 +8,35 @@ import { CardDeck } from "react-bootstrap";
 
 const AllLists = () => {
     const [lists, setLists] = useState([]);
+    // const [id, setID] = useState([]);
 
     useEffect(() => {
-        axios.get('/api/list').then((response) => {
-            setLists(response.data);
-            console.log("lists response.data", response.data);
-        })
+        // axios.get('/api/list').then((response) => {
+        //     setLists(response.data);
+        //     console.log("lists response.data", response.data);
+        // })
+
+        axios
+            .get(`/api/sessions/`)
+            .then((res) => {
+                if (res.data.currentUser) {
+                    console.log("SESSIONS RESPONSE ID", res.data.currentUser._id)
+                    // setId(res.data.currentUser._id)
+
+                    axios.get(`/api/users/${res.data.currentUser._id}`)
+                        .then((response) => {
+                            // setUser({
+                            //     _id: response.data._id,
+                            //     username: response.data.username,
+                            //     password: response.data.password,
+                            //     isAdmin: response.data.isAdmin,
+                            //     lists: response.data.lists,
+                            // });
+                            setLists(response.data.lists);
+                        });
+                }
+
+            });
 
 
     }, [])

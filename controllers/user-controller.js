@@ -75,9 +75,23 @@ router.get("/", isAuthenticatedNormal, (req, res) => {
 //     });
 // });
 
+// // READ ONE - WITH POPULATE
+// router.get("/:id", (req, res) => {
+//     User.findById(req.params.id).populate('lists').exec((error, user) => {
+//         if (error) {
+//             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
+//         }
+//         res.status(StatusCodes.OK).send(user);
+//     });
+// });
+
 // READ ONE - WITH POPULATE
 router.get("/:id", (req, res) => {
-    User.findById(req.params.id).populate('List').exec((error, user) => {
+    User.findById(req.params.id).populate({
+        path: 'lists',
+        // Get friends of friends - populate the 'friends' array for every friend
+        populate: { path: 'category' }
+    }).exec((error, user) => {
         if (error) {
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error }); // { error } is the same as error: error!!!
         }
