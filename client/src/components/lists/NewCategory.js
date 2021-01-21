@@ -5,11 +5,11 @@ import { Form, Card } from "react-bootstrap";
 
 const NewCategory = () => {
   const [created, setCreated] = useState(false);
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/category", formData)
+      .post("/api/category", formData)
       .then((res) => {
         console.log("Response", res);
         setCreated(true);
@@ -27,32 +27,32 @@ const NewCategory = () => {
 
 
   if (created) {
-      return <Redirect to="/category" />
+    return <Redirect to="/category" />
   }
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-    <Card style={{width: '18rem', height: '15rem'}}>
-      <Card.Title> New Category </Card.Title>
-      <Card.Body>
-      <Form onSubmit={handleSubmit}>
-        <Form.Label>Name:</Form.Label>
-        <br />
-        <input
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={(e) =>
-            setFormData((state) => ({
-              ...state,
-              name: e.target.value,
-            }))
-          }
-        />
-        <br />
-        <Form.Label>Colour:</Form.Label>
-        <br />
-        {/* <input
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Card style={{ width: '18rem', height: '15rem' }}>
+        <Card.Title> New Category </Card.Title>
+        <Card.Body>
+          <Form onSubmit={handleSubmit}>
+            <Form.Label>Name:</Form.Label>
+            <br />
+            <input
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData((state) => ({
+                  ...state,
+                  name: e.target.value,
+                }))
+              }
+            />
+            <br />
+            <Form.Label>Colour:</Form.Label>
+            <br />
+            {/* <input
           id="color"
           name="color"
           value={formData.color}
@@ -63,27 +63,27 @@ const NewCategory = () => {
             }))
           }
         /> */}
-        <Form.Control as="select" id="color" name="color" value={formData.color} onChange={(e) =>
-            setFormData((state) => ({
-              ...state,
-              color: e.target.value,
-            }))
-          }>
-            <option>Red</option>
-            <option>Orange</option>
-            <option>Yellow</option>
-            <option>Green</option>
-            <option>Blue</option>
-            <option>Indigo</option>
-            <option>Violet</option>
-        </Form.Control>
-        <br />
-        <br />
-        <button type="submit" className="btn btn-primary">
-          Submit
+            <Form.Control as="select" id="color" name="color" value={formData.color} onChange={(e) =>
+              setFormData((state) => ({
+                ...state,
+                color: e.target.value,
+              }))
+            }>
+              <option>Red</option>
+              <option>Orange</option>
+              <option>Yellow</option>
+              <option>Green</option>
+              <option>Blue</option>
+              <option>Indigo</option>
+              <option>Violet</option>
+            </Form.Control>
+            <br />
+            <br />
+            <button type="submit" className="btn btn-primary">
+              Submit
         </button>
-      </Form>
-      </Card.Body>
+          </Form>
+        </Card.Body>
       </Card>
     </div>
   );

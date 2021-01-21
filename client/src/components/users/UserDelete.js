@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 
 const UserDelete = ({ id, updateFn }) => {
     const doDelete = () => {
-        axios.delete(`/users/${id}`).then((response) => {
+        axios.delete(`/api/users/${id}`).then((response) => {
             console.log("delete", response);
             updateFn();
         })

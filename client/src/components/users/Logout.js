@@ -6,7 +6,7 @@ const Logout = () => {
     const [ok, setOk] = useState(false);
 
     useEffect(() => {
-        axios.delete("/sessions").then((response) => {
+        axios.delete("/api/sessions").then((response) => {
             setOk(true);
         })
     }, [])

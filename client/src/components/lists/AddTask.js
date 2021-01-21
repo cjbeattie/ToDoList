@@ -36,7 +36,7 @@ const AddTask = (props) => {
 
 
     axios
-      .put(`/list/${props.list._id}`, updatedList)
+      .put(`/api/list/${props.list._id}`, updatedList)
       .then((res) => {
         console.log("response", res);
         props.handleAddTask(res);

@@ -8,7 +8,7 @@ const AllLists = () => {
     const [lists, setLists] = useState([]);
 
     useEffect(() => {
-        axios.get('/list').then((response) => {
+        axios.get('/api/list').then((response) => {
             setLists(response.data);
             console.log("lists response.data", response.data);
         })
@@ -18,7 +18,7 @@ const AllLists = () => {
 
 
     const updateDelete = () => {
-        axios.get('/list').then((response) => {
+        axios.get('/api/list').then((response) => {
             setLists(response.data);
             console.log("response", response)
         })

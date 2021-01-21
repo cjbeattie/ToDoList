@@ -18,7 +18,7 @@ const List = (props) => {
             console.log("made it to the part where we delete on load, this is updatedList", updatedList)
 
             axios
-                .put(`/list/${list._id}`, updatedList)
+                .put(`/api/list/${list._id}`, updatedList)
                 .then((res) => {
                     console.log("response", res);
                     setList({ ...list, tasks: tempTasks });
@@ -43,7 +43,7 @@ const List = (props) => {
 
         // Update description
         axios
-            .put(`/list/${list._id}`, updatedList)
+            .put(`/api/list/${list._id}`, updatedList)
             .then((res) => {
                 console.log("response", res);
                 setList(updatedList);
@@ -63,7 +63,7 @@ const List = (props) => {
 
         // Update isCompleted
         axios
-            .put(`/list/${list._id}`, updatedList)
+            .put(`/api/list/${list._id}`, updatedList)
             .then((res) => {
                 console.log("response", res);
                 setList(updatedList);
@@ -91,7 +91,7 @@ const List = (props) => {
 
 
                     axios
-                        .put(`/list/${list._id}`, updatedList2)
+                        .put(`/api/list/${list._id}`, updatedList2)
                         .then((res) => {
                             console.log("response", res);
                             setList({ ...list, tasks: tempTasks2 });

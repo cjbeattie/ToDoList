@@ -36,6 +36,23 @@ app.use(
   })
 )
 
+
+const userController = require('./controllers/user-controller')
+app.use('/api/users', userController)
+
+const listController = require("./controllers/list-controller");
+app.use("/api/list", listController);
+
+const categoryController = require("./controllers/category-controller");
+app.use("/api/category", categoryController);
+
+const sessionsController = require('./controllers/sessions-controller.js')
+app.use('/api/sessions', sessionsController)
+
+// app.get('/', (req, res) => {
+//   res.send({ currentUser: req.session.currentUser })
+// })
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('./client/build'));
 
@@ -44,25 +61,6 @@ if (process.env.NODE_ENV === 'production') {
       'index.html'));
   });
 }
-
-
-const userController = require('./controllers/user-controller')
-app.use('/users', userController)
-
-const listController = require("./controllers/list-controller");
-app.use("/list", listController);
-
-const categoryController = require("./controllers/category-controller");
-app.use("/category", categoryController);
-
-const sessionsController = require('./controllers/sessions-controller.js')
-app.use('/sessions', sessionsController)
-
-// app.get('/', (req, res) => {
-//   res.send({ currentUser: req.session.currentUser })
-// })
-
-
 
 const port = process.env.PORT || 4000
 app.listen(port, () => {

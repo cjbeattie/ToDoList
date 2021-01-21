@@ -8,7 +8,7 @@ const SignUp = (e) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/users", formData)
+      .post("/api/users", formData)
       .then((res) => {
         console.log("response", res);
         setCreated(true);
@@ -38,9 +38,9 @@ const SignUp = (e) => {
     console.log(value)
     console.log(name)
     setFormData((state) => ({
-        ...state,
-        isAdmin: value,
-      }))
+      ...state,
+      isAdmin: value,
+    }))
   };
 
   const [created, setCreated] = useState(false);
@@ -50,44 +50,44 @@ const SignUp = (e) => {
   }
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-    <Card style={{width: '18rem', height: '15rem'}} >
-      <h1> SignUp Form</h1>
-      <form onSubmit={handleSubmit}>
-        Username:
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Card style={{ width: '18rem', height: '15rem' }} >
+        <h1> SignUp Form</h1>
+        <form onSubmit={handleSubmit}>
+          Username:
         <input
-          type="text"
-          value={formData.username}
-          onChange={(e) =>
-            setFormData((state) => ({
-              ...state,
-              username: e.target.value,
-            }))
-          }
-        />
-        <br />
+            type="text"
+            value={formData.username}
+            onChange={(e) =>
+              setFormData((state) => ({
+                ...state,
+                username: e.target.value,
+              }))
+            }
+          />
+          <br />
         Password:
         <input
-          type="password"
-          value={formData.password}
-          onChange={(e) =>
-            setFormData((state) => ({
-              ...state,
-              password: e.target.value,
-            }))
-          }
-        />
-        <br />
+            type="password"
+            value={formData.password}
+            onChange={(e) =>
+              setFormData((state) => ({
+                ...state,
+                password: e.target.value,
+              }))
+            }
+          />
+          <br />
         isAdmin:
         <input
-          type="checkbox"
-          name="isAdmin"
-          value={formData.isAdmin}
-          onChange={handleCheckbox}
-        />
-        <br />
-        <input type="submit" />
-      </form>
+            type="checkbox"
+            name="isAdmin"
+            value={formData.isAdmin}
+            onChange={handleCheckbox}
+          />
+          <br />
+          <input type="submit" />
+        </form>
       </Card>
     </div>
   );

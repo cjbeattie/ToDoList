@@ -8,8 +8,8 @@ const NewList = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const requestCat = axios.get("/category");
-    const requestList = axios.get("/list");
+    const requestCat = axios.get("/api/category");
+    const requestList = axios.get("/api/list");
     axios.all([requestList, requestCat]).then(
       axios.spread((...responses) => {
         const responseList = responses[0]; //array of current lists
@@ -30,7 +30,7 @@ const NewList = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/list", formData)
+      .post("/api/list", formData)
       .then((res) => {
         console.log("response", res);
         setCreated(true);
@@ -57,42 +57,42 @@ const NewList = () => {
   }
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-    <Card style={{width: '18rem', height: '15rem'}} >
-      <h1>New List</h1>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>Name:</Form.Label>
-          <Form.Control
-            as="select"
-            multiple
-            id="category"
-            name="category"
-            value={formData.category._id}
-            onChange={(e) => {
-              console.log(e.target.value);
-              setFormData({
-                category: {
-                  _id: e.target.value,
-                  name: categories.find((x) => x._id === e.target.value).name,
-                  color: categories.find((x) => x._id === e.target.value).color,
-                  __v: categories.find((x) => x._id === e.target.value).__v,
-                },
-                tasks: [],
-              });
-            }}
-          >
-            {categories.map((a) => (
-              <option value={a._id}>{a.name}</option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-        <br />
-        <button type="submit" class="btn btn-primary">
-          Submit
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Card style={{ width: '18rem', height: '15rem' }} >
+        <h1>New List</h1>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Label>Name:</Form.Label>
+            <Form.Control
+              as="select"
+              multiple
+              id="category"
+              name="category"
+              value={formData.category._id}
+              onChange={(e) => {
+                console.log(e.target.value);
+                setFormData({
+                  category: {
+                    _id: e.target.value,
+                    name: categories.find((x) => x._id === e.target.value).name,
+                    color: categories.find((x) => x._id === e.target.value).color,
+                    __v: categories.find((x) => x._id === e.target.value).__v,
+                  },
+                  tasks: [],
+                });
+              }}
+            >
+              {categories.map((a) => (
+                <option value={a._id}>{a.name}</option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+          <br />
+          <button type="submit" class="btn btn-primary">
+            Submit
         </button>
-        <br />
-      </Form>
+          <br />
+        </Form>
       </Card>
     </div>
   );

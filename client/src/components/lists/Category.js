@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Table , Button } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import CategoryEdit from "./CategoryEdit";
 import CategoryDelete from "./CategoryDelete";
 // import categoryDelete from "./categoryDelete"
@@ -10,7 +10,7 @@ const Category = () => {
   const [category, setCategory] = useState([]);
 
   useEffect(() => {
-    axios.get("/category").then((response) => {
+    axios.get("/api/category").then((response) => {
       setCategory(response.data);
     });
   }, []);

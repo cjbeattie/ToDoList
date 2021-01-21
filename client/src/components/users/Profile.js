@@ -8,7 +8,7 @@ const UserProfile = () => {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    axios.get("/users").then((response) => {
+    axios.get("/api/users").then((response) => {
       setUser(response.data);
     });
   }, []);
