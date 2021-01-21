@@ -24,8 +24,8 @@ app.use(express.static("public"));
 // setup method override to allow DELETE
 // app.use(methodOverride("_method"));
 
-const cors = require("cors");
-app.use(cors());
+// const cors = require("cors");
+// app.use(cors());
 
 const session = require("express-session");
 app.use(
@@ -48,9 +48,9 @@ app.use("/category", categoryController);
 const sessionsController = require('./controllers/sessions-controller.js')
 app.use('/sessions', sessionsController)
 
-app.get('/', (req, res) => {
-  res.send({ currentUser: req.session.currentUser })
-})
+// app.get('/', (req, res) => {
+//   res.send({ currentUser: req.session.currentUser })
+// })
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('./client/build'));
