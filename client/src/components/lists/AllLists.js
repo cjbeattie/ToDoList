@@ -27,7 +27,7 @@ const AllLists = () => {
     }
 
     return (
-        <CardDeck>
+        <CardDeck className="mt-3">
             {lists.map((list) => (
                 <>
                     <List
