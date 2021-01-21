@@ -49,10 +49,6 @@ app.use("/api/category", categoryController);
 const sessionsController = require('./controllers/sessions-controller.js')
 app.use('/api/sessions', sessionsController)
 
-// app.get('/', (req, res) => {
-//   res.send({ currentUser: req.session.currentUser })
-// })
-
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('./client/build'));
 

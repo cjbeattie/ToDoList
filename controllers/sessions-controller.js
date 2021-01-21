@@ -24,6 +24,11 @@ sessions.post("/", (req, res, next) => {
   });
 });
 
+sessions.get('/', (req, res) => {
+  res.send({ currentUser: req.session.currentUser })
+  console.log(req.session.currentUser)
+})
+
 sessions.delete("/", (req, res) => {
   req.session.destroy(() => {
     res.clearCookie("connect.sid", { path: "/" });
