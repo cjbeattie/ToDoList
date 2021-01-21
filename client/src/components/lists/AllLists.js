@@ -27,24 +27,26 @@ const AllLists = () => {
     }
 
     return (
-        <CardDeck className="mt-3">
-            {lists.map((list) => (
-                <>
-                    <List
-                        key={list._id}
-                        list={list}
-                        updateDelete={updateDelete}
-                    // tasks={list.tasks}
-                    // lists={lists}
-                    // id={list._id}
-                    // category={list.category.name}
-                    // tasks={list.tasks}
-                    // handleCheckboxClick={(e) => handleCheckboxClick(e, list)}
-                    />
-                    {/* <DeleteList id={list._id} updateFn={updateDelete} /> */}
-                </>
-            ))}
-        </CardDeck>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'left' }}>
+            <CardDeck className="mt-3">
+                {lists.map((list) => (
+                    <>
+                        <List
+                            key={list._id}
+                            list={list}
+                            updateDelete={updateDelete}
+                        // tasks={list.tasks}
+                        // lists={lists}
+                        // id={list._id}
+                        // category={list.category.name}
+                        // tasks={list.tasks}
+                        // handleCheckboxClick={(e) => handleCheckboxClick(e, list)}
+                        />
+                        {/* <DeleteList id={list._id} updateFn={updateDelete} /> */}
+                    </>
+                ))}
+            </CardDeck>
+        </div >
     )
 }
 
