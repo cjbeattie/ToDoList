@@ -51,7 +51,7 @@ const SignUp = (e) => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Card style={{ width: '18rem' }} className="text-left">
+      <Card style={{ width: '18rem' }} className="text-left mt-3">
         <Card.Header as="h5">Sign Up</Card.Header>
         {/* <h1> SignUp Form</h1> */}
         <Card.Body variant="flush" classname="mb-3">
