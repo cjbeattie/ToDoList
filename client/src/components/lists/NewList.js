@@ -65,7 +65,7 @@ const NewList = () => {
           <Form.Label>Name:</Form.Label>
           <Form.Control
             as="select"
-            
+            multiple
             id="category"
             name="category"
             value={formData.category._id}
