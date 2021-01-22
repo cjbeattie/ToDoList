@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Redirect } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
+import { Link } from "react-router-dom"
 
 const OK = 'Ok';
 
@@ -45,6 +46,7 @@ const Login = () => {
                             <input type="submit" value="Login" />
                             {loginStatus}
                         </fieldset>
+                        <Link to="/signup">SignUp</Link>
                     </form>
                 </Card.Body>
 
