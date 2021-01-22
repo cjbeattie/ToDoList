@@ -35,7 +35,7 @@ const AllLists = () => {
                             setLists(response.data.lists);
                         });
                 }
-
+                console.log("lists", lists)
             });
 
 
@@ -51,24 +51,34 @@ const AllLists = () => {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'left' }}>
-            <CardDeck className="mt-3">
-                {lists.map((list) => (
+            {(lists.length > 0) ? (
+                <CardDeck className="mt-3">
+                    {lists.map((list) => (
+                        <>
+                            <List
+                                key={list._id}
+                                list={list}
+                                updateDelete={updateDelete}
+                            // tasks={list.tasks}
+                            // lists={lists}
+                            // id={list._id}
+                            // category={list.category.name}
+                            // tasks={list.tasks}
+                            // handleCheckboxClick={(e) => handleCheckboxClick(e, list)}
+                            />
+                            {/* <DeleteList id={list._id} updateFn={updateDelete} /> */}
+                        </>
+                    ))}
+                </CardDeck>
+            ) : (
                     <>
-                        <List
-                            key={list._id}
-                            list={list}
-                            updateDelete={updateDelete}
-                        // tasks={list.tasks}
-                        // lists={lists}
-                        // id={list._id}
-                        // category={list.category.name}
-                        // tasks={list.tasks}
-                        // handleCheckboxClick={(e) => handleCheckboxClick(e, list)}
-                        />
-                        {/* <DeleteList id={list._id} updateFn={updateDelete} /> */}
+                        <br />
+                        <br />
+                        <p>No lists! Please add a new list by clicking "New List" above.</p>
                     </>
-                ))}
-            </CardDeck>
+                )
+            }
+
         </div >
     )
 }
