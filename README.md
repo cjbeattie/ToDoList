@@ -2,6 +2,7 @@
 
 ## Technologies used
 MERN (MongoDB, Express, React, Node)
+Bootstrap
 
 ## Approach
 To create a simple to-do list app where users can create multiple lists and save them to their account.
