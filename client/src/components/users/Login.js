@@ -38,7 +38,7 @@ const Login = (props) => {
                             {errors.username && 'Username is required'}
                             <br />
                             <label htmlFor='password'>Password: </label>
-                            <input name='password' id='password' required ref={register} />
+                            <input type="password" name='password' id='password' required ref={register} />
                             {errors.password && "Password is required"}
                             <br />
                         </fieldset>
