@@ -45,19 +45,38 @@ function App() {
     if (isSignedIn) {
       return (
         <>
-          <NavLink to="/sessions" className="nav-link">
-            Logout
+          <Nav className="mr-auto">
+            <NavLink to="/list" className="nav-link">
+              Lists
+                </NavLink>
+            <NavLink to="/category" className="nav-link">
+              Categories
+                </NavLink>
+            <NavLink to="/list/new" className="nav-link">
+              New List
+                </NavLink>
+          </Nav>
+          <Nav>
+            <NavLink to="/sessions" className="nav-link">
+              Logout
           </NavLink>
-          <NavLink to="/profile" className="nav-link">
-            Profile
+            <NavLink to="/profile" className="nav-link">
+              Profile
           </NavLink>
+          </Nav>
         </>
       );
     } else {
       return (
-        <NavLink to="/login" className="nav-link">
-          Login/SignUp
+        <>
+          <Nav className="mr-auto"></Nav>
+          <Nav>
+            <NavLink to="/login" className="nav-link">
+              Login/SignUp
         </NavLink>
+          </Nav >
+        </>
+
       );
     }
   };
@@ -71,23 +90,13 @@ function App() {
             <Navbar.Brand href="/">Donesy!</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto">
-                <NavLink to="/list" className="nav-link">
-                  Lists
-                </NavLink>
-                <NavLink to="/category" className="nav-link">
-                  Categories
-                </NavLink>
-                <NavLink to="/list/new" className="nav-link">
-                  New List
-                </NavLink>
-              </Nav>
-              <Nav>{hideSignUp(isSignedIn)}</Nav>
+
+              {hideSignUp(isSignedIn)}
             </Navbar.Collapse>
           </Navbar>
           <Switch>
             <Route exact path="/">
-              <AllLists />
+              {isSignedIn ? <AllLists /> : <SignUp />}
             </Route>
             <Route path="/category/new">
               <NewCategory />
