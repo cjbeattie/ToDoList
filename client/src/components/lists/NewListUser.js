@@ -31,37 +31,28 @@ const NewListUser = () => {
       setId(res.data.currentUser._id);
 
       axios.get(`/api/users/${res.data.currentUser._id}`).then((response) => {
-        setUser({
+        const user = {
           _id: response.data._id,
           username: response.data.username,
           password: response.data.password,
           isAdmin: response.data.isAdmin,
           lists: response.data.lists,
-        });
+        };
+          let cats = [];
+          for (let i = 0; i < user.lists.length; i++) {
+            cats.push(user.lists[i].category);
+          }
+          console.log(cats);
 
-        // axios.get(`/api/list`).then((response2) => {
-        //   let userLists = [];
-        //   for (let i = 0; i < user.lists.length; i++) {
-        //     userLists.push(user.lists[i]);
-        //   }
-        //   let cats = [];
-        //   for (let i = 0; i < userLists.length; i++) {
-        //     let list = response2.data.find((x) => x.category._id === userLists[i]);
-        //     cats.push(list)
-        //   }
-        //   let cats1 = [];
-        //   for (let i = 0; i < cats.length; i++) {
-        //       cats1.push(cats[i].category)
-        //   }
-        //   console.log(cats1);
-        //   // Finds the categories that aren't currently a list
-        //   axios.get("api/category").then((response3) => {
-        //     const result = response3.data.filter(
-        //       ({ name: id1 }) => !cats1.some(({ name: id2 }) => id2 === id1)
-        //     );
-        //     setCategories(result);
-        //   });
-        // });
+          axios.get("/api/category").then((response3) => {
+            // Finds the categories that aren't currently a list
+            const result = response3.data.filter(
+              ({ _id: id1 }) => !cats.some(({ _id: id2 }) => id2 === id1)
+            );
+            console.log(result);
+            setCategories(result);
+            setUser(user)
+          });
       });
 
       // const requestCat = axios.get("/api/category");
