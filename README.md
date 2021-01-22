@@ -27,3 +27,6 @@ As an admin user:
 ![Wireframe](/documentation/wireframe.png)
 
 ## Unsolved problems/Major hurdles we had to overcome
+- Specific authentication tasks.
+- Linking elements in the front end and back end.
+- Creating and updating to two different components simultaneously.
