@@ -38,21 +38,21 @@ const NewListUser = () => {
           isAdmin: response.data.isAdmin,
           lists: response.data.lists,
         };
-          let cats = [];
-          for (let i = 0; i < user.lists.length; i++) {
-            cats.push(user.lists[i].category);
-          }
-          console.log(cats);
+        let cats = [];
+        for (let i = 0; i < user.lists.length; i++) {
+          cats.push(user.lists[i].category);
+        }
+        console.log(cats);
 
-          axios.get("/api/category").then((response3) => {
-            // Finds the categories that aren't currently a list
-            const result = response3.data.filter(
-              ({ _id: id1 }) => !cats.some(({ _id: id2 }) => id2 === id1)
-            );
-            console.log(result);
-            setCategories(result);
-            setUser(user)
-          });
+        axios.get("/api/category").then((response3) => {
+          // Finds the categories that aren't currently a list
+          const result = response3.data.filter(
+            ({ _id: id1 }) => !cats.some(({ _id: id2 }) => id2 === id1)
+          );
+          console.log(result);
+          setCategories(result);
+          setUser(user)
+        });
       });
 
       // const requestCat = axios.get("/api/category");
@@ -160,17 +160,19 @@ const NewListUser = () => {
         alignItems: "center",
       }}
     >
-      <Card style={{ width: "18rem", height: "15rem" }}>
-        <h1>New List</h1>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Label>Name:</Form.Label>
-            <Form.Control
-              as="select"
-              multiple
-              id="category"
-              name="category"
-              value={formData.category._id}
+      <Card style={{ width: "18rem" }} className="text-left mt-3">
+        <Card.Header as="h5">New List</Card.Header>
+        {/* <h1>New List</h1> */}
+        <Card.Body variant="flush" classname="mb-3">
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="exampleForm.ControlSelect1">
+              <Form.Label>Name:</Form.Label>
+              <Form.Control
+                as="select"
+                multiple
+                id="category"
+                name="category"
+                value={formData.category._id}
               // onChange={(e) => {
               //   console.log(e.target.value);
               //   let cats = user.lists.push({ // This is apparently not a function and where the errors are being chucked up
@@ -198,18 +200,20 @@ const NewListUser = () => {
               //     lists: cats,
               //   }));
               // }}
-            >
-              {categories.map((a) => (
-                <option value={a._id}>{a.name}</option>
-              ))}
-            </Form.Control>
-          </Form.Group>
-          <br />
-          <button type="submit" class="btn btn-primary">
-            Submit
+              >
+                {categories.map((a) => (
+                  <option value={a._id}>{a.name}</option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+            <br />
+            <button type="submit" class="btn btn-primary">
+              Submit
           </button>
-          <br />
-        </Form>
+            <br />
+          </Form>
+        </Card.Body>
+
       </Card>
     </div>
   );
