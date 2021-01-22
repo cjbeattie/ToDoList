@@ -13,14 +13,47 @@ import Profile from "./components/users/Profile";
 import AddTask from "./components/lists/AddTask";
 import Category from "./components/lists/Category";
 import CategoryEdit from "./components/lists/CategoryEdit";
-import NewCategory from "./components/lists/NewCategory"
-import NewList from "./components/lists/NewList"
+import NewCategory from "./components/lists/NewCategory";
+import NewList from "./components/lists/NewList";
 import NewListUser from "./components/lists/NewListUser";
 import { Navbar, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
+  
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+  axios
+      .get(`/api/sessions/`)
+      .then((res) => {
+          setIsSignedIn(true)
+      })
+      }, []);
+        
+  const hideSignUp = (isSignedIn) => {
+    if (isSignedIn) {
+      return (
+        <>
+          <NavLink to="/sessions" className="nav-link">
+            Logout
+          </NavLink>
+          <NavLink to="/profile" className="nav-link">
+            Profile
+          </NavLink>
+        </>
+      );
+    } else {
+      return (
+        <NavLink to="/login" className="nav-link">
+          Login/ SignUp
+        </NavLink>
+      );
+    }
+  };
+
 
   return (
     <div className="App">
@@ -41,20 +74,7 @@ function App() {
                   New List
                 </NavLink>
               </Nav>
-              <Nav>
-                <NavLink to="/signup" className="nav-link">
-                  SignUp
-                </NavLink>
-                <NavLink to="/login" className="nav-link">
-                  Login
-                </NavLink>
-                <NavLink to="/sessions" className="nav-link">
-                  Logout
-                </NavLink>
-                <NavLink to="/profile" className="nav-link">
-                  Profile
-                </NavLink>
-              </Nav>
+              <Nav>{hideSignUp(isSignedIn)}</Nav>
             </Navbar.Collapse>
           </Navbar>
           <Switch>

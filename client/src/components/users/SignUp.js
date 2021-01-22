@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { Card } from 'react-bootstrap'
+import { Link } from "react-router-dom"
 
 const SignUp = (e) => {
 
@@ -90,8 +91,8 @@ const SignUp = (e) => {
               onChange={handleCheckbox}
             />
             <br />
-            <br />
             <input type="submit" />
+            <Link to={`/login`} activeClassName="active">Login</Link>
           </form>
         </Card.Body>
       </Card>
