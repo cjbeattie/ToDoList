@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 
 const OK = 'Ok';
 
-const Login = () => {
+const Login = (props) => {
     const { errors, register, handleSubmit } = useForm();
     const [loginStatus, setLoginStatus] = useState('');
 
@@ -15,6 +15,7 @@ const Login = () => {
         axios.post('/api/sessions', data).then((response) => {
             setLoginStatus(OK);
             console.log("response", response)
+            props.handleLogin();
         }).catch((error) => {
             setLoginStatus(error.message);
         })

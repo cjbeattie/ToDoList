@@ -22,17 +22,25 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function App() {
-  
+
   const [isSignedIn, setIsSignedIn] = useState(false);
 
-  useEffect(() => {
-  axios
-      .get(`/api/sessions/`)
-      .then((res) => {
-          setIsSignedIn(true)
-      })
-      }, []);
-        
+  // useEffect(() => {
+  //   axios
+  //     .get(`/api/sessions/`)
+  //     .then((res) => {
+  //       setIsSignedIn(true)
+  //     })
+  // }, []);
+
+  const handleLogout = () => {
+    setIsSignedIn(false)
+  }
+
+  const handleLogin = () => {
+    setIsSignedIn(true)
+  }
+
   const hideSignUp = (isSignedIn) => {
     if (isSignedIn) {
       return (
@@ -48,7 +56,7 @@ function App() {
     } else {
       return (
         <NavLink to="/login" className="nav-link">
-          Login/ SignUp
+          Login/SignUp
         </NavLink>
       );
     }
@@ -94,10 +102,10 @@ function App() {
               <NewListUser />
             </Route>
             <Route path="/sessions">
-              <Logout />
+              <Logout handleLogout={handleLogout} />
             </Route>
             <Route path="/login">
-              <Login />
+              <Login handleLogin={handleLogin} />
             </Route>
             <Route path="/signup">
               <SignUp />
