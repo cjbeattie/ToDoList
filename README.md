@@ -1,4 +1,5 @@
-# DONESY
+# DONSEY
+https://donesy-mern.herokuapp.com/
 
 ## Technologies used
 MERN (MongoDB, Express, React, Node)
@@ -6,10 +7,6 @@ Bootstrap
 
 ## Approach
 To create a simple to-do list app where users can create multiple lists and save them to their account.
-
-## Installation instructions
-No need to install anything! Just visit the project link at:
-https://donesy-mern.herokuapp.com/
 
 ## User stories
 As a user: 
@@ -26,8 +23,3 @@ As an admin user:
 
 ## Wireframes
 ![Wireframe](/documentation/wireframe.png)
-
-## Unsolved problems/Major hurdles we had to overcome
-- Specific authentication tasks.
-- Linking elements in the front end and back end.
-- Creating and updating to two different components simultaneously.
