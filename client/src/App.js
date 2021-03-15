@@ -87,7 +87,7 @@ function App() {
       <Router>
         <div>
           <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="/">DONSEY</Navbar.Brand>
+            <Navbar.Brand href="/" className="DonseyBrand">DONSEY!</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
 
