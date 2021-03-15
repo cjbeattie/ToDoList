@@ -2,7 +2,7 @@
 All projects here were done in about 5 days so are very much MVPs at this stage, but I will continue to work on them when I get the time.*
 
 # DONSEY
-https://donesy-mern.herokuapp.com/
+https://to-do-list-donsey.herokuapp.com/
 
 ## Technologies used
 MERN (MongoDB, Express, React, Node)
