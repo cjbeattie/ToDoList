@@ -88,7 +88,7 @@ const SignUp = (e) => {
                 value={formData.isAdmin}
                 onChange={handleCheckbox} />
               <Form.Text className="text-muted">
-                Admin users can edit categories and see a list of all users. For now, anyone can be an admin user.
+                Admins can delete users. For now, anyone can be an admin user.
               </Form.Text>
             </Form.Group>
             <Button variant="outline-secondary" type="submit">
