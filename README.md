@@ -8,6 +8,9 @@ https://donesy-mern.herokuapp.com/
 MERN (MongoDB, Express, React, Node)
 Bootstrap
 
+## Screenshot
+![Screenshot](/documentation/Donsey.png)
+
 ## Approach
 To create a simple to-do list app where users can create multiple lists and save them to their account.
 
